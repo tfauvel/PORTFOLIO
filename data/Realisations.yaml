@@ -1,0 +1,12 @@
+realisations:
+  - titre: "Statuts"
+    description: "Création d'une page avec un tableau sur les diferent Statut juridique"
+    illustration: "assets/images/Statut.jpg"
+    documents:
+      - "lien vers le site"
+
+  - titre: "Crepe"
+    description: "Création d'une page web avec un recette de pate a crepe"
+    illustration: "assets/images/Crepe.jpg"
+    documents:
+      - "lien vers le site"

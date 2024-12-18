@@ -1,0 +1,34 @@
+- domaine: Développement
+  items:
+    - nom: HTML
+      niveau: 4 
+    - nom: CSS
+      niveau: 3
+    - nom: PHP
+      niveau: 1
+    - nom: SQL
+      niveau: 1
+- domaine: Réseau
+  items:
+    - nom: Configuration Cisco
+      niveau: 4
+    - nom: IPv4/IPv6
+      niveau: 4
+    - nom: Sécurité réseau
+      niveau: 2
+- domaine: Bureautique
+  items:
+    - nom: Microsoft Word
+      niveau: 3
+    - nom: Microsoft Excel
+      niveau: 3
+    - nom: PowerPoint
+      niveau: 2
+- domaine: Langues
+  items:
+    - nom: Français
+      niveau: 5
+    - nom: Anglais
+      niveau: 2
+    - nom: Espagnol
+      niveau: 1
