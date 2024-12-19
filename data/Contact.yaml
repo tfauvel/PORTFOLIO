@@ -1,20 +1,17 @@
-formulaire_contact:
-  - champ: "Nom de l'expéditeur"
-    type: "text"
-    obligatoire: true
+- champ: "Nom de l'expéditeur"
+  type: "text"
 
-  - champ: "Adresse de courriel de l'expéditeur"
-    type: "email"
-    obligatoire: true
+- champ: "Adresse de courriel de l'expéditeur"
+  type: "email"
 
-  - champ: "Objet du message"
-    type: "text"
-    obligatoire: true
+- champ: "Objet du message"
+  type: "text"
 
-  - champ: "Contenu du message"
-    type: "textarea"
-    obligatoire: true
+- champ: "Contenu du message"
+  type: "textarea"
 
-  - champ: "Captcha"
-    type: "captcha"
-    obligatoire: true
+- champ: "Captcha"
+  type: "captcha"
+
+
+

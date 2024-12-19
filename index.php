@@ -17,41 +17,49 @@
   <a href="pages/Competences.php">Compétences</a>
   <a href="pages/Realisations.php">Réalisations</a>
   <a href="pages/Formations.php">Formation</a>
-  <a href="pages/Contact.php">Contact</a> 
-  <a href="C:/xampp/htdocs/portfolio/assets/CV.pdf">CV</a>  
+  <a href="pages/contact.php">Contact</a> 
+  <a href="/portfolio/assets/CV.pdf" download>CV</a> 
 </nav>
 
 <!-- --------------------------------------------------------------- -->
 
 </header>
 
-<h1>Accueil</h1>
+<div class="main">
 
 
-
-<!-- --------------------------------------------------------------- -->
-
-<h1>Competences</h1>
-
-
+<div>
+<?php Include('C:/xampp/htdocs/portfolio/pages/Accueil.php'); ?>
+</div>
 
 <!-- --------------------------------------------------------------- -->
 
-<h1>Realisations</h1>
 
-
-
-<!-- --------------------------------------------------------------- -->
-
-<h1>Formations</h1>
-
-
+<div>
+<?php Include('C:/xampp/htdocs/portfolio/pages/Competences.php'); ?>
+</div>
 
 <!-- --------------------------------------------------------------- -->
 
-<h1>Contact</h1>
+
+<div>
+<?php Include('C:/xampp/htdocs/portfolio/pages/Realisations.php'); ?>
+</div>
+
+<!-- --------------------------------------------------------------- -->
 
 
+<div>
+<?php Include('C:/xampp/htdocs/portfolio/pages/Formations.php'); ?>
+</div>
+
+<!-- --------------------------------------------------------------- -->
+
+<div>
+<?php Include('C:/xampp/htdocs/portfolio/pages/contact.php'); ?>
+</div>
+
+</div>
 
 </body>
 </html>  
