@@ -7,7 +7,19 @@
 </head>
 <body>
 
+<header>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/portfolio/menudenavigation.php';
+?>
+
+</header>
+
     <h1>Compétences</h1>
+
+
+</body>
+</html>
 
 <?php
 

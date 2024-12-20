@@ -6,8 +6,16 @@
 	<title></title>
 </head>
 <body>
+<header>
 
-	<h1>Accueil</h1>
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/portfolio/menudenavigation.php';
+?>
+
+</header>
+
+<h1>Accueil</h1> 
+
 
 
 </body>

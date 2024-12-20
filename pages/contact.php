@@ -30,6 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Formulaire de Contact</title>
 
 </head>
+
+<header>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/portfolio/menudenavigation.php';
+?>
+
+</header>
+
 <body>
     <div class="container">
         <h1>Formulaire de Contact</h1>
