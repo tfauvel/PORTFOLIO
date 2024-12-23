@@ -1,37 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <link href="../assets/css/style.css" rel="stylesheet"/>
-    <title></title>
+    <title>Réalisations</title>
 </head>
 <body>
 
 <header>
-
-<?php
-include $_SERVER['DOCUMENT_ROOT'] . '/portfolio/menudenavigation.php';
-?>
-
+    <?php
+    include '/var/www/html/portfolio/menudenavigation.php';
+    ?>
 </header>
 
-    <h1>Realisations</h1>
+<h1>Réalisations</h1>
+<div id="Realisations">
+    <?php
+    // Inclusion de yaml.php avec un chemin absolu correct
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/yaml/yaml.php');
+
+    // Chargement du fichier YAML
+    $data = yaml_parse_file($_SERVER['DOCUMENT_ROOT'] . '/data/Realisations.yaml');
+
+    foreach ($data['realisations'] as $realisation) {
+        echo "<div class='realisation'>";
+        echo "<p><strong>" . htmlspecialchars($realisation['titre']) . "</strong></p>";
+        echo "<p>" . htmlspecialchars($realisation['description']) . "</p>";
+        echo "<div class='image-container'>";
+        echo '<img src="' . htmlspecialchars($realisation['illustration']) . '" alt="' . htmlspecialchars($realisation['titre']) . '">';
+        echo "</div>";
+        echo '<a href="' . htmlspecialchars($realisation['documents'][0]) . '" target="_blank" class="view-doc">Voir le document</a>';
+        echo "</div>";
+    }
+    ?>
+</div>
+
+<?php include '/var/www/html/portfolio/footer.php'; ?>
 
 </body>
 </html>
 
 
-<?php
-
-require_once("C:/xampp/htdocs/portfolio/yaml/yaml.php");
-$data = yaml_parse_file('C:/xampp/htdocs/portfolio/data/Realisations.yaml');
-
-foreach ($data['realisations'] as $realisation) {
-    echo "<p><strong>Titre :</strong> " . $realisation['titre'] . "</p>";
-    echo "<p><strong>Description :</strong> " . $realisation['description'] . "</p>";
-    echo '<img src="' . htmlspecialchars($realisation['illustration']) . '" alt="Illustration de ' . htmlspecialchars($realisation['titre']) . '" style="max-width: 300px;">';
-    echo '<a href="' . htmlspecialchars($realisation['documents'][0]) . '" target="_blank">Voir le document</a>';
-
-}
-
-?>

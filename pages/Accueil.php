@@ -9,29 +9,32 @@
 <header>
 
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/portfolio/menudenavigation.php';
+include '/var/www/html/portfolio/menudenavigation.php';
 ?>
+
 
 </header>
 
-<h1>Accueil</h1> 
+
+
+<?php
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/yaml/yaml.php");
+$data = yaml_parse_file($_SERVER['DOCUMENT_ROOT'] . '/data/Accueil.yaml');
+
+echo '<div id="Accueil">';
+echo '<h1>Accueil</h1>';
+echo "<p>" . $data['Prenom'] . "</p>";
+echo "<p>" . $data['nom'] . "</p>";
+echo "<p>" . $data['Accroche'] . "</p>";
+echo "<p>" . $data['Presentation'] . "</p>";
+echo '</div>';
+  
+include '/var/www/html/portfolio/footer.php';
+
+?>
 
 
 
 </body>
 </html>
-
-
-<?php
-
-require_once("C:/xampp/htdocs/portfolio/yaml/yaml.php");
-$data=yaml_parse_file('C:/xampp/htdocs/portfolio/data/Accueil.yaml');
-
-echo "<p>" . $data['Prenom'] . "</p>";
-echo "<p>" . $data['nom'] . "</p>";
-echo "<p>" . $data['Accroche'] . "</p>";
-echo "<p>" . $data['Presentation'] . "</p>";
-
-?>
-
-

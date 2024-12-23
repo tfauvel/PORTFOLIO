@@ -1,12 +1,12 @@
 realisations:
   - titre: "Statuts"
     description: "Création d'une page avec un tableau sur les diferent Statut juridique"
-    illustration: "/portfolio/assets/images/Statut.jpg"
+    illustration: "/assets/images/Statut.jpg"
     documents:
       - "https://tfauvel.github.io/BLOC1-2024/pages/td2/statuts-juridiques.html"
 
   - titre: "Crepe"
     description: "Création d'une page web avec un recette de pate a crepe"
-    illustration: "/portfolio/assets/images/Crepe.jpg"
+    illustration: "/assets/images/Crepe.jpg"
     documents:
       - "https://tfauvel.github.io/BLOC1-2024/pages/td2/pate%20a%20crepe.html"

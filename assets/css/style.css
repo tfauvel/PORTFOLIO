@@ -96,28 +96,372 @@ button {
   text-align: center;
 }
 
-
-----------------------------------------
-
 #navbar2 {
   align-items: center;
   align-content: center;
 }
 
+#retour {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/* Accueil  */
+
+#Accueil {
+    display: flex;                     /* Active Flexbox */
+    flex-direction: column;            /* Aligne les éléments en colonne */
+    justify-content: center;           /* Centre les éléments verticalement */
+    align-items: center;               /* Centre les éléments horizontalement */
+    height: 100vh;                     /* Prend toute la hauteur de la fenêtre */
+    text-align: center;                /* Centre le texte dans chaque élément */
+    background-color: #f9f9f9;         /* Couleur de fond légèrement grise */
+    border-radius: 10px;               /* Bordures arrondies */
+    padding: 20px;                     /* Espacement interne */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile autour du bloc */
+    width: 80%;                        /* Limite la largeur à 80% de l'écran */
+    max-width: 600px;                  /* Largeur maximale de 600px */
+    margin: 0 auto;                    /* Centre le bloc horizontalement */
+    margin-top: 100px;
+}
+
+#Accueil h1 {
+    font-size: 2.5rem;                 /* Taille de police du titre */
+    margin-bottom: 15px;               /* Ecart entre le titre et les paragraphes */
+    color: #333;                       /* Couleur du texte du titre */
+    font-weight: bold;                 /* Gras pour le titre */
+    text-transform: uppercase;         /* Transforme le texte en majuscules */
+}
+
+#Accueil p {
+    font-size: 1.2rem;                 /* Taille de police des paragraphes */
+    margin-top: 10px;                  /* Ecart entre le titre et le premier paragraphe */
+    margin-bottom: 15px;               /* Espacement entre les paragraphes */
+    color: #555;                       /* Couleur du texte des paragraphes */
+    line-height: 1.6;                  /* Hauteur de ligne pour améliorer la lisibilité */
+}
+
+/* Pour la partie Responsive */
 
 
+@media (max-width: 768px) {
+    #Accueil {
+        width: 90%;                    /* Réduit la largeur sur les petits écrans */
+        padding: 15px;                 /* Réduit l'espacement interne sur petits écrans */
+    }
+
+    #Accueil h1 {
+        font-size: 2rem;               /* Réduit la taille du titre sur petits écrans */
+    }
+
+    #Accueil p {
+        font-size: 1rem;               /* Réduit la taille de police des paragraphes */
+    }
+}
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/* Competences */
+
+#Competences {
+    display: flex;                     /* Utilise Flexbox */
+    flex-direction: column;            /* Aligne les éléments en colonne */
+    justify-content: flex-start;           /* Centre verticalement */
+    align-items: center;               /* Centre horizontalement */
+    min-height: 100vh;                     /* Prend toute la hauteur de la fenêtre */
+    text-align: center;                /* Centre le texte */
+    background-color: #f9f9f9;         /* Fond clair */
+    padding: 20px;                     /* Espacement interne */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    width: 80%;                        /* Limite la largeur à 80% */
+    max-width: 800px;                  /* Largeur maximale de 800px */
+    margin: 0 auto;                    /* Centre le bloc horizontalement */
+    box-sizing: border-box;
+}
+
+#Competences h1 {
+    font-size: 2.5rem;                 /* Taille du titre */
+    margin-bottom: 20px;               /* Espacement entre le titre et le premier domaine */
+    color: #333;                       /* Couleur du texte */
+    font-weight: bold;                 /* Gras pour le titre */
+    text-transform: uppercase;         /* Majuscules */
+    padding-top: 20px;
+}
+
+.competence {
+    background-color: #fff;            /* Fond blanc pour chaque domaine */
+    border-radius: 10px;               /* Bordures arrondies */
+    padding: 20px;                     /* Espacement interne */
+    margin-bottom: 20px;               /* Espacement entre chaque domaine */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre autour du bloc */
+    width: 100%;                       /* Prend toute la largeur du conteneur parent */
+    box-sizing: border-box; /* Inclut les bordures et padding dans les dimensions */
+    max-width: 100%; /* Assure que la largeur ne dépasse pas de la carte parent */
+}
+
+.competence h3 {
+    font-size: 1.8rem;                 /* Taille des sous-titres pour chaque domaine */
+    margin-bottom: 15px;               /* Espacement entre le titre du domaine et les compétences */
+    color: #333;                       /* Couleur du texte */
+    font-weight: bold;                 /* Gras pour les sous-titres */
+    padding-top: 10px;
+}
+
+.competence p {
+    font-size: 1.2rem;                 /* Taille de la police des compétences */
+    margin: 5px 0;                     /* Marge entre chaque compétence */
+    color: #555;                       /* Couleur du texte des compétences */
+    line-height: 1.5;                  /* Hauteur de ligne pour améliorer la lisibilité */
+}
+
+/* Pour la partie Responsive */
+
+@media (max-width: 768px) {
+    #Competences {
+        width: 90%;                    /* Réduit la largeur pour les petits écrans */
+        padding: 15px;                 /* Réduit l'espacement interne */
+    }
+
+    #Competences h1 {
+        font-size: 2rem;               /* Réduit la taille du titre */
+    }
+
+    .competence h3 {
+        font-size: 1.5rem;             /* Réduit la taille des titres des domaines */
+    }
+
+    .competence p {
+        font-size: 1rem;               /* Réduit la taille des compétences */
+    }
+}
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/* Formations */
+
+#Formations {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh; /* Hauteur minimale égale à la hauteur de la fenêtre */
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box; /* Inclut les bordures et padding dans les dimensions */
+}
+
+#Formations h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-top: 20px;
+}
+
+.formation {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box; /* Inclut les bordures et padding dans les dimensions */
+}
+
+.formation h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.formation p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    color: #555;
+    line-height: 1.5;
+}
+
+.formation p strong {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Pour la partie Responsive */
+@media (max-width: 768px) {
+    #Formations {
+        width: 90%;
+        padding: 15px;
+    }
+
+    #Formations h1 {
+        font-size: 2rem;
+    }
+
+    .formation h3 {
+        font-size: 1.5rem;
+    }
+
+    .formation p {
+        font-size: 1rem;
+    }
+}
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/* Realisations */
+
+/* Style pour le titre h1 */
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+/* Conteneur principal pour les réalisations */
+#Realisations {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+/* Chaque réalisation */
+.realisation {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 45%; /* Plus large */
+    background-color: #f9f9f9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au survol */
+.realisation:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Texte dans chaque réalisation */
+.realisation p {
+    margin: 15px 0;
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* Conteneur pour l'image */
+.realisation .image-container {
+    margin-bottom: 15px;
+}
+
+/* Image dans chaque réalisation */
+.realisation img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Lien pour voir le document */
+.realisation .view-doc {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+/* Changement de couleur au survol du lien */
+.realisation .view-doc:hover {
+    background-color: #0056b3;
+}
+
+/* footer */
 
 
+footer {
+    background-color: #f0f0f0; /* Changez la couleur de fond si nécessaire */
+    padding: 20px; /* Espace autour du footer */
+    position: relative; /* Position absolue ou fixe pour le positionnement plus simple */
+    text-align: center; /* Aligner le texte au centre */
+    margin-top: 30px; /* Ajoute une marge au-dessus du footer */
+    clear: both; /* Permet d'éviter le chevauchement avec le contenu de la page */
+    bottom: 0; /* Pour fixer le footer en bas de la page */
+    width: 100%; /* Pour que le footer occupe la largeur de la page */
+}
 
+footer p {
+    margin: 0; /* Supprime la marge du texte */
+    text-align: center; /* Centre le texte */
+    font-size: 16px; /* Taille du texte */
+}
 
+footer .social-icons {
+    display: flex;
+    justify-content: center; /* Centre les icônes horizontalement */
+    gap: 20px; /* Espacement entre les icônes */
+    margin-top: 10px; /* Ajoute un petit espace entre le texte et les icônes */
+}
 
+footer .social-icons a {
+    display: inline-block; /* Pour les icônes */
+}
 
+footer .social-icons img {
+    width: 30px; /* Réduit la taille des icônes */
+    height: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Animation au survol */
+}
 
+footer .social-icons a:hover img {
+    transform: scale(1.1); /* Agrandit légèrement l'icône */
+    opacity: 0.8; /* Légère transparence au survol */
+}
 
+/* Pour ajuster le positionnement si nécessaire */
+footer .social-icons a img {
+    max-width: 100%;
+    height: auto;
+}
 
+/* bouton pour revenir en haut */
 
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  display: none; /* Par défaut, on le cache */
+  text-decoration: none;
+}
 
-
-
-
+#scrollTopBtn:hover {
+  background-color: #0056b3;
+}
 

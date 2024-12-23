@@ -1,22 +1,53 @@
 <?php
+// Inclusion de PHPMailer via Composer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-require_once("C:/xampp/htdocs/portfolio/yaml/yaml.php");
-$data = yaml_parse_file('C:/xampp/htdocs/portfolio/data/Contact.yaml');
+require_once __DIR__. '/../yaml/vendor/autoload.php'; // Assurez-vous que le fichier autoload.php de Composer est inclus
 
+// Variables pour stocker le message de retour
+$messageFeedback = "";
+
+// Traitement du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Traitement du formulaire
+    // Récupération des données du formulaire
     $nom = $_POST['nom'];
     $email = $_POST['email'];
     $objet = $_POST['objet'];
     $message = $_POST['message'];
     $captcha = $_POST['captcha'];
 
-    // Vérification simple du captcha (exemple basique)
+    // Vérification du captcha
     if ($captcha == "1234") {
-        // Envoyer l'email ou traiter les données comme nécessaire
-        echo "<p class='success'>Merci pour votre message, $nom. Nous vous répondrons bientôt.</p>";
+        try {
+            // Configuration de PHPMailer pour utiliser le SMTP de Gmail
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com'; // Serveur SMTP de Gmail
+            $mail->SMTPAuth = true;
+            $mail->Username = 'theo.fauvel@sts-sio-caen.info'; // Remplacez par votre adresse Gmail
+            $mail->Password = 'Filou50190..'; // Remplacez par votre mot de passe Gmail
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            // Destinataire
+            $mail->setFrom('votre_email@gmail.com', 'Votre Nom');
+            $mail->addAddress('theo.fauvel@sts-sio-caen.info'); // Remplacez par l'adresse de votre destinataire
+
+            // Contenu de l'email
+            $mail->isHTML(true);
+            $mail->Subject = $objet;
+            $mail->Body    = "Nom: $nom<br>Email: $email<br>Message: $message";
+            $mail->AltBody = "Nom: $nom\nEmail: $email\nMessage: $message";
+
+            // Envoi de l'email
+            $mail->send();
+            $messageFeedback = "<p class='success'>Merci pour votre message, $nom. Nous vous répondrons bientôt.</p>";
+        } catch (Exception $e) {
+            $messageFeedback = "<p class='error'>Une erreur est survenue lors de l'envoi de votre message. Erreur : {$mail->ErrorInfo}</p>";
+        }
     } else {
-        echo "<p class='error'>Le captcha est incorrect.</p>";
+        $messageFeedback = "<p class='error'>Le captcha est incorrect.</p>";
     }
 }
 ?>
@@ -26,23 +57,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../assets/css/style.css" rel="stylesheet"/>
+    <link href="/assets/css/style.css" rel="stylesheet"/>
     <title>Formulaire de Contact</title>
-
 </head>
 
-<header>
-
-<?php
-include $_SERVER['DOCUMENT_ROOT'] . '/portfolio/menudenavigation.php';
-?>
-
-</header>
-
 <body>
+    <header>
+        <?php include '/var/www/html/portfolio/menudenavigation.php'; ?>
+    </header>
+
     <div class="container">
         <h1>Formulaire de Contact</h1>
 
+        <!-- Affichage du message de retour -->
+        <?php echo $messageFeedback; ?>
+
+        <!-- Formulaire de contact -->
         <form action="" method="POST">
             <label for="nom">Nom de l'expéditeur :</label>
             <input type="text" id="nom" name="nom" required><br>
@@ -62,5 +92,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/portfolio/menudenavigation.php';
             <button type="submit">Envoyer</button>
         </form>
     </div>
+
+<?php include '/var/www/html/portfolio/footer.php'; ?>
+
 </body>
 </html>
+
