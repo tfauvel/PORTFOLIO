@@ -92,9 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Envoyer</button>
         </form>
     </div>
+</body>
 
 <?php include '/var/www/html/portfolio/footer.php'; ?>
 
-</body>
 </html>
 

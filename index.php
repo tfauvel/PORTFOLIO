@@ -40,7 +40,7 @@ document.getElementById("scrollTopBtn").onclick = function() {
     <a href="pages/Realisations.php">Réalisations</a>
     <a href="pages/Formations.php">Formation</a>
     <a href="pages/contact.php">Contact</a> 
-    <a href="/portfolio/assets/CV.pdf" download>CV</a> 
+    <a href="/assets/CV.pdf" download="CV.pdf">CV</a> 
   </nav>
 
 <?php

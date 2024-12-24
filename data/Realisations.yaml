@@ -1,6 +1,6 @@
 realisations:
   - titre: "Statuts"
-    description: "Création d'une page avec un tableau sur les diferent Statut juridique"
+    description: "Création d'une page avec un tableau sur les different Statuts juridique"
     illustration: "/assets/images/Statut.jpg"
     documents:
       - "https://tfauvel.github.io/BLOC1-2024/pages/td2/statuts-juridiques.html"
