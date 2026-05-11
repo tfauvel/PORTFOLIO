@@ -312,30 +312,75 @@
   <div class="section-header">
     <div class="section-label">03 — Veille</div>
     <h2>Veille technologique</h2>
-    <p class="section-desc">Mise à jour continue des connaissances dans le domaine SISR</p>
   </div>
-  <div class="veille-grid">
-    <div class="card">
-      <div class="veille-source">Sécurité</div>
-      <div class="veille-title">Gestion des mises à jour avec WSUS</div>
-      <div class="veille-desc">Déploiement et supervision des mises à jour Windows sur l'ensemble du parc via Windows Server Update Services.</div>
+
+  <!-- Source principale -->
+  <div class="card" style="margin-bottom:1.5rem;border-left:3px solid var(--green);display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="font-size:22px;">📡</span>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Source principale</div>
+        <div style="font-size:15px;font-weight:700;">IT-Connect — Actualités IT & Cybersécurité</div>
+      </div>
     </div>
-    <div class="card">
-      <div class="veille-source">Formation</div>
-      <div class="veille-title">Parcours OpenClassrooms</div>
-      <div class="veille-desc">Suivi de formations en ligne sur les réseaux, la sécurité informatique et l'administration système.</div>
-    </div>
-    <div class="card">
-      <div class="veille-source">Développement web</div>
-      <div class="veille-title">HTML, CSS et PHP</div>
-      <div class="veille-desc">Apprentissage des langages web dans le cadre du domaine 3 — contribution à la présence numérique de l'organisation.</div>
-    </div>
-    <div class="card">
-      <div class="veille-source">Juridique</div>
-      <div class="veille-title">RGPD et gestion des données</div>
-      <div class="veille-desc">Obligations légales liées à la gestion des comptes et données des utilisateurs en entreprise.</div>
-    </div>
+    <p style="font-size:13px;color:var(--muted);">Je consulte régulièrement les actualités IT-Connect pour suivre les évolutions du secteur : nouvelles vulnérabilités, mises à jour systèmes, bonnes pratiques réseaux et sécurité. Ce site couvre l'administration système, les réseaux et la cybersécurité — des domaines directement liés à mon option SISR.</p>
+    <a href="https://www.it-connect.fr/actualites/" target="_blank" class="btn btn-outline" style="width:fit-content;font-size:13px;">🔗 Voir les actualités IT-Connect</a>
   </div>
+
+  <!-- Autres sources -->
+  <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
+
+    <div class="card" style="border-left:3px solid var(--green);display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:22px;">📧</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Newsletter · Office 365</div>
+          <div style="font-size:15px;font-weight:700;">Actualités Microsoft 365</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);">Je reçois sur ma boîte professionnelle une newsletter Microsoft 365 qui m'informe des nouveautés, évolutions et mises à jour de la suite Office. Je lis chaque édition en me demandant si les changements annoncés concernent notre environnement à l'E2SE — par exemple les évolutions de Teams, SharePoint ou les politiques de sécurité qui impactent directement les utilisateurs que je supporte.</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--green);display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:22px;">🔧</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Newsletter · SCCM & Intune</div>
+          <div style="font-size:15px;font-weight:700;">Gestion du parc & déploiement</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);">Je suis des newsletters dédiées à SCCM (Microsoft Configuration Manager) et Intune afin de rester informé des évolutions de ces outils de gestion de parc. Je fais le lien avec notre infrastructure à l'E2SE pour identifier ce qui pourrait s'appliquer à notre contexte : nouvelles fonctionnalités de déploiement, gestion des politiques ou supervision des postes.</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--green);display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:22px;">📱</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Réseaux sociaux · Actu Tech</div>
+          <div style="font-size:15px;font-weight:700;">Comptes d'actualités IT suivis</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);">Je suis plusieurs comptes d'actualités tech sur les réseaux sociaux pour me tenir informé au quotidien des tendances du secteur informatique.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+        <a href="https://www.instagram.com/01net/" target="_blank" class="btn btn-outline" style="font-size:12px;padding:6px 12px;">📷 @01net</a>
+        <a href="https://www.instagram.com/it_connect.fr/" target="_blank" class="btn btn-outline" style="font-size:12px;padding:6px 12px;">📷 @it_connect.fr</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Article exemple IT-Connect -->
+  <a href="https://www.it-connect.fr/palo-alto-networks-alerte-sur-une-nouvelle-zero-day-deja-exploitee-cve-2026-0300/" target="_blank" class="card" style="text-decoration:none;color:inherit;display:block;border-left:3px solid var(--green);transition:transform 0.15s;margin-bottom:0;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <span style="font-size:22px;">🔴</span>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Exemple d'article · Cybersécurité · Mai 2026</div>
+        <div style="font-size:15px;font-weight:700;">Zero-day Palo Alto Networks (CVE-2026-0300)</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);">Faille critique dans PAN-OS permettant une exécution de code à distance sans authentification, déjà exploitée par des cybercriminels. Ce type d'alerte me permet de rester vigilant sur les équipements réseau et de comprendre l'importance des mises à jour de sécurité dans un environnement professionnel.</p>
+    <div style="font-size:12px;color:var(--green);margin-top:8px;font-weight:600;">Lire l'article sur IT-Connect →</div>
+  </a>
 </section>
 
 <hr>
