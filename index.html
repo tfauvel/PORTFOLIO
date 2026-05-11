@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio E5 – Théo Fauvel</title>
+<style>
+  :root {
+    --green: #639922;
+    --green-light: #EAF3DE;
+    --green-dark: #3B6D11;
+    --green-xdark: #27500A;
+    --bg: #f8f9f7;
+    --white: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 56px;
+  }
+  .nav-brand { font-weight: 600; font-size: 15px; color: var(--green-dark); letter-spacing: -0.3px; }
+  .nav-links { display: flex; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.15s; }
+  .nav-links a:hover { color: var(--text); background: var(--green-light); }
+
+  section { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+  section + section { padding-top: 2rem; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
+
+  /* HERO */
+  #hero { padding-top: 5rem; padding-bottom: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green-xdark); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; width: fit-content; }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  h1 { font-size: 42px; font-weight: 700; letter-spacing: -1px; line-height: 1.15; }
+  h1 span { color: var(--green); }
+  .hero-sub { font-size: 17px; color: var(--muted); max-width: 520px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.15s; border: none; }
+  .btn-primary { background: var(--green); color: #fff; }
+  .btn-primary:hover { background: var(--green-dark); }
+  .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-outline:hover { background: var(--white); border-color: var(--green); color: var(--green-dark); }
+
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+
+  .section-header { margin-bottom: 2rem; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 1.2px; color: var(--green); text-transform: uppercase; margin-bottom: 6px; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+  .section-desc { font-size: 15px; color: var(--muted); margin-top: 6px; }
+
+  /* PRÉSENTATION 3 plans */
+  .plans-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  @media(max-width:700px) { .plans-grid { grid-template-columns: 1fr; } }
+
+  .plan-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 10px; }
+  .plan-num { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 1px; text-transform: uppercase; }
+  .plan-title { font-size: 16px; font-weight: 700; }
+  .plan-body { font-size: 13px; color: var(--muted); flex: 1; }
+
+  .info-row { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 8px; }
+  .info-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
+  .tl-item { display: flex; gap: 14px; padding-bottom: 1.1rem; position: relative; }
+  .tl-item:not(:last-child)::after { content: ''; position: absolute; left: 18px; top: 36px; bottom: 0; width: 1px; background: var(--border); }
+  .tl-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--green-light); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+  .tl-content { padding-top: 4px; }
+  .tl-date { font-size: 11px; color: var(--green); font-weight: 600; margin-bottom: 2px; }
+  .tl-title { font-size: 14px; font-weight: 600; }
+  .tl-sub { font-size: 12px; color: var(--muted); }
+
+  /* RÉALISATIONS */
+  .real-card { border-top: 3px solid transparent; transition: border-color 0.2s; }
+  .real-card:hover { border-top-color: var(--green); }
+  .real-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px; }
+  .real-title { font-size: 15px; font-weight: 600; }
+  .real-type { font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .type-entreprise { background: #dbeafe; color: #1e40af; }
+  .type-formation { background: var(--green-light); color: var(--green-xdark); }
+  .real-desc { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .comp-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .comp-tag { font-size: 11px; background: #f3f4f6; color: #374151; padding: 2px 7px; border-radius: 4px; }
+
+  /* VEILLE */
+  .veille-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .veille-source { font-size: 11px; color: var(--green); font-weight: 600; margin-bottom: 4px; }
+  .veille-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .veille-desc { font-size: 12px; color: var(--muted); }
+
+  /* SYNTHESE */
+  .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+  .synthese-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .synthese-table th { background: var(--green); color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; }
+  .synthese-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .synthese-table tr:last-child td { border-bottom: none; }
+  .synthese-table tr:nth-child(even) td { background: #fafaf9; }
+  .check { color: var(--green); font-weight: 700; text-align: center; }
+
+  /* CONTACT */
+  #contact { background: var(--white); border-top: 1px solid var(--border); }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .contact-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 1.25rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); transition: all 0.15s; background: var(--bg); }
+  .contact-item:hover { border-color: var(--green); background: var(--green-light); color: var(--green-dark); }
+  .contact-icon { font-size: 22px; }
+  .contact-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--green); }
+  .contact-value { font-size: 13px; text-align: center; word-break: break-all; }
+
+  @media(max-width:600px) {
+    h1 { font-size: 28px; }
+    nav { padding: 0 1rem; }
+    .nav-links a { padding: 6px 6px; font-size: 11px; }
+    section { padding: 3rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Théo Fauvel — Portfolio E5</span>
+  <div class="nav-links">
+    <a href="#presentation">Profil</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#veille">Veille</a>
+    <a href="#synthese">Synthèse</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="badge"><span class="badge-dot"></span> BTS SIO – Option SISR · Session 2024-2026</div>
+  <h1>Théo <span>Fauvel</span></h1>
+  <p class="hero-sub">Étudiant en BTS SIO SISR, passionné par les réseaux et l'infrastructure informatique, en stage à l'E2SE Business School de Caen.</p>
+  <div class="hero-actions">
+    <a href="#realisations" class="btn btn-primary">Voir mes réalisations</a>
+    <a href="#contact" class="btn btn-outline">Contact</a>
+  </div>
+</section>
+
+<hr>
+
+<!-- PRÉSENTATION 3 PLANS -->
+<section id="presentation">
+  <div class="section-header">
+    <div class="section-label">01 — Présentation</div>
+    <h2>Qui suis-je ?</h2>
+  </div>
+
+  <div class="plans-grid">
+
+    <!-- Plan 1 : Moi -->
+    <div class="plan-card">
+      <div class="plan-num">Moi</div>
+      <div class="plan-title">Théo Fauvel</div>
+      <p class="plan-body">Passionné par les réseaux et les infrastructures informatiques, j'aime comprendre et construire des systèmes robustes. Curieux et autonome, je m'investis autant en formation qu'en entreprise pour monter en compétences.</p>
+      <div style="margin-top:6px;">
+        <div class="info-row"><span class="info-icon">📍</span><span>Caen, Normandie</span></div>
+        <div class="info-row"><span class="info-icon">✉️</span><span>theo.fauvel@e2se.fr</span></div>
+        <div class="info-row"><span class="info-icon">📞</span><span>00-00-00-00-00</span></div>
+      </div>
+      <a href="cv.pdf" download class="btn btn-outline" style="margin-top:10px;justify-content:center;font-size:13px;">📄 Télécharger mon CV</a>
+    </div>
+
+    <!-- Plan 2 : Parcours -->
+    <div class="plan-card">
+      <div class="plan-num">Parcours</div>
+      <div class="plan-title">Ma formation</div>
+      <div class="timeline" style="margin-top:6px;">
+        <div class="tl-item">
+          <div class="tl-dot">📘</div>
+          <div class="tl-content">
+            <div class="tl-date">Seconde</div>
+            <div class="tl-title">MTNE option SN</div>
+            <div class="tl-sub">Lycée Charles Tellier · Condé-en-Normandie</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">📗</div>
+          <div class="tl-content">
+            <div class="tl-date">1ʳᵉ & Terminale</div>
+            <div class="tl-title">Bac SN option RISC</div>
+            <div class="tl-sub">Lycée Charles Tellier · Condé-en-Normandie</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">💻</div>
+          <div class="tl-content">
+            <div class="tl-date">2024 – 2026</div>
+            <div class="tl-title">BTS SIO option SISR</div>
+            <div class="tl-sub">Saint-Ursule · Caen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan 3 : Entreprise -->
+    <div class="plan-card">
+      <div class="plan-num">Entreprise</div>
+      <div class="plan-title">E2SE Business School</div>
+      <p class="plan-body">École supérieure de commerce proposant des formations du Bac+2 au Bac+5 dans les domaines du management, du commerce et du digital.</p>
+      <div style="margin-top:6px;">
+        <div class="info-row"><span class="info-icon">📍</span><span>Caen & Le Havre</span></div>
+        <div class="info-row"><span class="info-icon">🏢</span><span>Enseignement supérieur privé</span></div>
+        <div class="info-row"><span class="info-icon">💼</span><span>Service informatique interne</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr>
+
+<!-- RÉALISATIONS -->
+<section id="realisations">
+  <div class="section-header">
+    <div class="section-label">02 — Réalisations</div>
+    <h2>Réalisations professionnelles</h2>
+    <p class="section-desc">En entreprise et en formation – 1ère et 2ème année</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1rem;">
+
+    <div class="card real-card">
+      <div class="real-header">
+        <span class="real-title">Installation et configuration d'un serveur Windows Server</span>
+        <span class="real-type type-entreprise">Entreprise</span>
+      </div>
+      <p class="real-desc">Mise en place d'un serveur Windows Server avec Active Directory, gestion des utilisateurs et des GPO pour E2SE.</p>
+      <div class="comp-tags">
+        <span class="comp-tag">C1 – Patrimoine</span>
+        <span class="comp-tag">C5 – Mise à disposition</span>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header">
+        <span class="real-title">Déploiement du service WSUS</span>
+        <span class="real-type type-entreprise">Entreprise</span>
+      </div>
+      <p class="real-desc">Mise en place et tests d'intégration du service WSUS sur le parc informatique. Création de procédures de déploiement.</p>
+      <div class="comp-tags">
+        <span class="comp-tag">C4 – Mode projet</span>
+        <span class="comp-tag">C5 – Mise à disposition</span>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header">
+        <span class="real-title">Gestion de tickets et support utilisateurs via GLPI</span>
+        <span class="real-type type-entreprise">Entreprise</span>
+      </div>
+      <p class="real-desc">Traitement des incidents et demandes via GLPI, par mail ou en direct. Intégration de nouveaux collaborateurs.</p>
+      <div class="comp-tags">
+        <span class="comp-tag">C2 – Incidents</span>
+        <span class="comp-tag">C5 – Mise à disposition</span>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header">
+        <span class="real-title">Préparation de postes EBP</span>
+        <span class="real-type type-entreprise">Entreprise</span>
+      </div>
+      <p class="real-desc">Préparation et configuration de postes EBP en équipe dans le cadre d'un projet planifié.</p>
+      <div class="comp-tags">
+        <span class="comp-tag">C4 – Mode projet</span>
+        <span class="comp-tag">C5 – Mise à disposition</span>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header">
+        <span class="real-title">Apprentissage HTML, CSS et PHP</span>
+        <span class="real-type type-formation">Formation</span>
+      </div>
+      <p class="real-desc">Apprentissage des langages web et mise en place de matériels pour le service communication de l'école.</p>
+      <div class="comp-tags">
+        <span class="comp-tag">C3 – Présence en ligne</span>
+        <span class="comp-tag">C6 – Développement pro.</span>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header">
+        <span class="real-title">Formations OpenClassrooms & présence LinkedIn</span>
+        <span class="real-type type-formation">Formation</span>
+      </div>
+      <p class="real-desc">Suivi de parcours de formation en ligne et gestion de l'identité professionnelle sur LinkedIn et Indeed.</p>
+      <div class="comp-tags">
+        <span class="comp-tag">C6 – Développement pro.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr>
+
+<!-- VEILLE -->
+<section id="veille">
+  <div class="section-header">
+    <div class="section-label">03 — Veille</div>
+    <h2>Veille technologique</h2>
+    <p class="section-desc">Mise à jour continue des connaissances dans le domaine SISR</p>
+  </div>
+  <div class="veille-grid">
+    <div class="card">
+      <div class="veille-source">Sécurité</div>
+      <div class="veille-title">Gestion des mises à jour avec WSUS</div>
+      <div class="veille-desc">Déploiement et supervision des mises à jour Windows sur l'ensemble du parc via Windows Server Update Services.</div>
+    </div>
+    <div class="card">
+      <div class="veille-source">Formation</div>
+      <div class="veille-title">Parcours OpenClassrooms</div>
+      <div class="veille-desc">Suivi de formations en ligne sur les réseaux, la sécurité informatique et l'administration système.</div>
+    </div>
+    <div class="card">
+      <div class="veille-source">Développement web</div>
+      <div class="veille-title">HTML, CSS et PHP</div>
+      <div class="veille-desc">Apprentissage des langages web dans le cadre du domaine 3 — contribution à la présence numérique de l'organisation.</div>
+    </div>
+    <div class="card">
+      <div class="veille-source">Juridique</div>
+      <div class="veille-title">RGPD et gestion des données</div>
+      <div class="veille-desc">Obligations légales liées à la gestion des comptes et données des utilisateurs en entreprise.</div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- SYNTHESE -->
+<section id="synthese">
+  <div class="section-header">
+    <div class="section-label">04 — Tableau de synthèse</div>
+    <h2>Synthèse des réalisations</h2>
+    <p class="section-desc">BTS SIO SISR · E2SE Business School · Session 2024-2026</p>
+  </div>
+  <div class="table-wrap">
+    <table class="synthese-table">
+      <thead>
+        <tr>
+          <th style="min-width:210px;">Réalisation professionnelle</th>
+          <th title="Gérer le patrimoine">C1</th>
+          <th title="Incidents et demandes">C2</th>
+          <th title="Présence en ligne">C3</th>
+          <th title="Mode projet">C4</th>
+          <th title="Mise à disposition">C5</th>
+          <th title="Développement pro.">C6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Installation Windows Server</td><td class="check">✓</td><td></td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>Déploiement WSUS</td><td></td><td></td><td></td><td class="check">✓</td><td class="check">✓</td><td></td></tr>
+        <tr><td>Gestion tickets GLPI / support</td><td></td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>Intégration nouveaux collaborateurs</td><td class="check">✓</td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>Préparation postes EBP</td><td></td><td></td><td></td><td class="check">✓</td><td class="check">✓</td><td></td></tr>
+        <tr><td>Apprentissage HTML, CSS, PHP</td><td></td><td></td><td class="check">✓</td><td></td><td></td><td class="check">✓</td></tr>
+        <tr><td>Formations OpenClassrooms / LinkedIn</td><td></td><td></td><td></td><td></td><td></td><td class="check">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-top:10px;">C1 Patrimoine · C2 Incidents · C3 Présence en ligne · C4 Mode projet · C5 Mise à disposition · C6 Développement pro.</p>
+  <div style="margin-top:1rem;">
+    <a href="#" onclick="window.print();return false;" class="btn btn-outline">🖨️ Télécharger en PDF</a>
+  </div>
+</section>
+
+<hr>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <div class="section-label">05 — Contact</div>
+    <h2>Me retrouver</h2>
+    <p class="section-desc">Tous mes liens et coordonnées</p>
+  </div>
+  <div class="contact-grid">
+    <a href="mailto:theo.fauvel@e2se.fr" class="contact-item">
+      <span class="contact-icon">✉️</span>
+      <span class="contact-label">Email</span>
+      <span class="contact-value">theo.fauvel@e2se.fr</span>
+    </a>
+    <a href="tel:0000000000" class="contact-item">
+      <span class="contact-icon">📞</span>
+      <span class="contact-label">Téléphone</span>
+      <span class="contact-value">00-00-00-00-00</span>
+    </a>
+    <a href="https://linkedin.com/in/[votre-profil]" target="_blank" class="contact-item">
+      <span class="contact-icon">💼</span>
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">linkedin.com/in/[profil]</span>
+    </a>
+    <a href="https://github.com/[votre-username]" target="_blank" class="contact-item">
+      <span class="contact-icon">🐙</span>
+      <span class="contact-label">GitHub</span>
+      <span class="contact-value">github.com/[username]</span>
+    </a>
+    <a href="https://indeed.com/[votre-profil]" target="_blank" class="contact-item">
+      <span class="contact-icon">🔍</span>
+      <span class="contact-label">Indeed</span>
+      <span class="contact-value">indeed.com/[profil]</span>
+    </a>
+  </div>
+</section>
+
+<footer style="background:var(--white);border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:13px;color:var(--muted);">
+  <strong>Théo Fauvel</strong> — Portfolio E5 · BTS SIO SISR · E2SE Business School · Session 2024-2026
+</footer>
+
+</body>
+</html>
