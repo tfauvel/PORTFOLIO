@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Port-Security Cisco – Théo Fauvel</title>
+<style>
+  :root {
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;
+    --bg:#f8f9f7;--white:#ffffff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;}
+  .doc{max-width:820px;margin:0 auto;}
+
+  /* HEADER */
+  .doc-header{background:var(--green-dark);color:#fff;border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;}
+  .doc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;}
+  .meta-tag{background:rgba(255,255,255,0.15);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.5px;}
+  .doc-title{font-size:22px;font-weight:700;line-height:1.3;margin-bottom:.5rem;}
+  .doc-sub{font-size:13px;opacity:.8;}
+
+  /* SECTIONS */
+  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;}
+  .section-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid var(--green-light);}
+  .section-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+
+  /* INFOS GRID */
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+  .info-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.875rem;}
+  .info-label{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;}
+  .info-value{font-size:13px;font-weight:600;}
+  .info-sub{font-size:12px;color:var(--muted);}
+
+  /* TOPO */
+  .topo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:1rem;}
+  .topo-item{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;}
+  .topo-icon{font-size:28px;margin-bottom:6px;}
+  .topo-name{font-size:13px;font-weight:700;}
+  .topo-ip{font-size:11px;font-family:monospace;color:var(--green-dark);background:var(--green-light);padding:2px 6px;border-radius:4px;margin:4px 0;display:inline-block;}
+  .topo-role{font-size:11px;color:var(--muted);}
+  .topo-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--muted);}
+  .trunk-label{font-size:10px;text-align:center;color:var(--muted);margin-top:-8px;margin-bottom:1rem;font-style:italic;}
+
+  /* CODE */
+  .code-block{background:#1e1e2e;border-radius:8px;padding:1.25rem;overflow-x:auto;margin:.75rem 0;}
+  .code-block pre{color:#cdd6f4;font-family:'Courier New',monospace;font-size:13px;line-height:1.7;}
+  .code-block .cmd{color:#a6e3a1;}
+  .code-block .comment{color:#6c7086;font-style:italic;}
+  .code-block .kw{color:#89b4fa;}
+  .code-block .val{color:#fab387;}
+
+  /* VALIDATION */
+  .validation-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+  .val-item{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.875rem;}
+  .val-key{font-size:11px;font-family:monospace;color:var(--green-dark);font-weight:700;margin-bottom:3px;}
+  .val-value{font-size:12px;color:var(--text);}
+  .val-note{font-size:11px;color:var(--muted);margin-top:2px;}
+  .status-ok{display:inline-flex;align-items:center;gap:4px;background:#dcfce7;color:#166534;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;}
+  .status-err{display:inline-flex;align-items:center;gap:4px;background:#fee2e2;color:#991b1b;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;}
+
+  /* INTRUSION */
+  .steps{display:flex;flex-direction:column;gap:.75rem;}
+  .step{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{width:28px;height:28px;background:var(--green-light);border:2px solid var(--green);color:var(--green-xdark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .step-content{flex:1;}
+  .step-title{font-size:13px;font-weight:700;margin-bottom:2px;}
+  .step-desc{font-size:12px;color:var(--muted);}
+
+  /* COMPETENCES */
+  .comp-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .comp-badge{background:var(--green-light);color:var(--green-xdark);font-size:12px;font-weight:600;padding:4px 12px;border-radius:6px;}
+
+  /* TECH TAGS */
+  .tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.5rem;}
+  .tech-tag{background:#1e1e2e;color:#a6e3a1;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;font-family:monospace;}
+
+  /* ALERT */
+  .alert{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:.875rem;display:flex;gap:10px;align-items:flex-start;margin-top:.75rem;}
+  .alert-icon{font-size:18px;flex-shrink:0;}
+  .alert-text{font-size:12px;color:#92400e;line-height:1.5;}
+
+  @media(max-width:600px){
+    .info-grid,.topo-grid,.validation-grid{grid-template-columns:1fr;}
+    body{padding:1rem;}
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-meta">
+      <span class="meta-tag">BTS SIO SISR</span>
+      <span class="meta-tag">Épreuve E5</span>
+      <span class="meta-tag">Formation</span>
+      <span class="meta-tag">Couche 2 – Sécurité</span>
+    </div>
+    <div class="doc-title">Sécurisation des accès physiques réseau par Port-Security sur équipements Cisco</div>
+    <div class="doc-sub">Théo Fauvel · Saint-Ursule, Caen · Session 2024-2026</div>
+    <div class="tech-row" style="margin-top:1rem;">
+      <span class="tech-tag">Cisco IOS</span>
+      <span class="tech-tag">Port-Security</span>
+      <span class="tech-tag">Sticky MAC</span>
+      <span class="tech-tag">PVST</span>
+      <span class="tech-tag">Trunk 802.1Q</span>
+      <span class="tech-tag">Packet Tracer</span>
+    </div>
+  </div>
+
+  <!-- 1. CONTEXTE -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">1</span> Contexte et objectif</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">L'objectif de cette intervention est de sécuriser la couche d'accès (Couche 2 OSI) de l'infrastructure réseau. Afin de prévenir le branchement d'équipements non autorisés ou les attaques de type <strong>MAC Spoofing</strong>, un filtrage strict par adresse MAC a été mis en place sur les ports utilisateurs.</p>
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-label">Menace ciblée</div>
+        <div class="info-value">MAC Spoofing / équipements non autorisés</div>
+      </div>
+      <div class="info-box">
+        <div class="info-label">Couche OSI</div>
+        <div class="info-value">Couche 2 — Liaison de données</div>
+      </div>
+      <div class="info-box">
+        <div class="info-label">Méthode retenue</div>
+        <div class="info-value">Sticky MAC Address</div>
+        <div class="info-sub">Apprentissage dynamique — pas de saisie manuelle</div>
+      </div>
+      <div class="info-box">
+        <div class="info-label">Action en cas de violation</div>
+        <div class="info-value">Shutdown — port err-disabled</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. TOPOLOGIE -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">2</span> Topologie de l'infrastructure</div>
+    <div class="topo-grid">
+      <div class="topo-item">
+        <div class="topo-icon">💻</div>
+        <div class="topo-name">PC2</div>
+        <div class="topo-ip">192.168.1.1/24</div>
+        <div class="topo-role">Poste utilisateur</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:monospace;">MAC : 000C.85A4.C0DA</div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;">
+        <div class="topo-item" style="width:100%;">
+          <div class="topo-icon">🔀</div>
+          <div class="topo-name">SW1 — Switch4</div>
+          <div class="topo-ip">192.168.1.201/24</div>
+          <div class="topo-role">Commutateur d'accès</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px;">Fa0/1 → PC2 (Port-Security)<br>Fa0/24 → SW2 (Trunk)</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.75rem;">
+        <div class="topo-item">
+          <div class="topo-icon">🔀</div>
+          <div class="topo-name">SW2</div>
+          <div class="topo-ip">192.168.1.202/24</div>
+          <div class="topo-role">Commutateur de distribution</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px;">Fa0/24 → SW1 (Trunk)<br>Fa0/1 → PC_Jules</div>
+        </div>
+        <div class="topo-item">
+          <div class="topo-icon">💻</div>
+          <div class="topo-name">PC_Jules</div>
+          <div class="topo-ip">192.168.1.2/24</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;font-family:monospace;">MAC : 00D0.58DC.043E</div>
+        </div>
+      </div>
+    </div>
+    <div class="trunk-label">↔ Liaison Trunk 802.1Q entre SW1 Fa0/24 et SW2 Fa0/24</div>
+  </div>
+
+  <!-- 3. CONFIGURATION -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">3</span> Déploiement technique — Cisco IOS</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Configuration appliquée sur le commutateur d'accès <strong>SW1</strong>, port utilisateur <strong>Fa0/1</strong>. L'option <code>sticky</code> permet un apprentissage dynamique de l'adresse MAC légitime, évitant toute saisie manuelle.</p>
+    <div class="code-block">
+      <pre><span class="comment">! -- Accès au mode configuration --</span>
+<span class="cmd">SW1# configure terminal</span>
+
+<span class="comment">! -- Sélection du port utilisateur --</span>
+<span class="cmd">SW1(config)# interface FastEthernet0/1</span>
+
+<span class="comment">! -- Passage en mode accès --</span>
+<span class="cmd">SW1(config-if)# switchport mode access</span>
+
+<span class="comment">! -- Activation du Port-Security --</span>
+<span class="cmd">SW1(config-if)# switchport port-security</span>
+
+<span class="comment">! -- Limitation à 1 adresse MAC autorisée --</span>
+<span class="cmd">SW1(config-if)# switchport port-security maximum 1</span>
+
+<span class="comment">! -- Apprentissage dynamique (sticky) --</span>
+<span class="cmd">SW1(config-if)# switchport port-security mac-address sticky</span>
+
+<span class="comment">! -- Action en cas de violation : désactivation du port --</span>
+<span class="cmd">SW1(config-if)# switchport port-security violation shutdown</span></pre>
+    </div>
+    <div class="alert">
+      <span class="alert-icon">💡</span>
+      <span class="alert-text">Le mode <strong>sticky</strong> enregistre automatiquement la première adresse MAC détectée dans la configuration courante du switch. Cela évite de saisir manuellement l'adresse et permet un déploiement rapide sur de nombreux ports.</span>
+    </div>
+  </div>
+
+  <!-- 4. VALIDATION -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">4</span> Validation technique</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Résultat de la commande <code style="background:var(--green-light);padding:1px 6px;border-radius:4px;color:var(--green-xdark);">show port-security interface fa0/1</code> après application de la configuration :</p>
+    <div class="validation-grid">
+      <div class="val-item">
+        <div class="val-key">Port Security</div>
+        <div class="val-value"><span class="status-ok">✓ Enabled</span></div>
+        <div class="val-note">Fonctionnalité activée sur Fa0/1</div>
+      </div>
+      <div class="val-item">
+        <div class="val-key">Port Status</div>
+        <div class="val-value"><span class="status-ok">✓ Secure-up</span></div>
+        <div class="val-note">Port actif, trafic autorisé</div>
+      </div>
+      <div class="val-item">
+        <div class="val-key">Violation Mode</div>
+        <div class="val-value">Shutdown</div>
+        <div class="val-note">Port désactivé en cas de violation</div>
+      </div>
+      <div class="val-item">
+        <div class="val-key">Maximum MAC Addresses</div>
+        <div class="val-value">1</div>
+        <div class="val-note">Un seul équipement autorisé</div>
+      </div>
+      <div class="val-item">
+        <div class="val-key">Sticky MAC Addresses</div>
+        <div class="val-value">1 (apprise dynamiquement)</div>
+        <div class="val-note">Adresse MAC du poste légitime enregistrée</div>
+      </div>
+      <div class="val-item">
+        <div class="val-key">Security Violation Count</div>
+        <div class="val-value">0</div>
+        <div class="val-note">Aucune violation détectée</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. TEST INTRUSION -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">5</span> Simulation d'intrusion et maintien en condition opérationnelle</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Un test d'intrusion physique a été simulé en remplaçant le poste légitime par un équipement non reconnu, afin de valider l'efficacité de la solution.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Branchement d'un équipement non autorisé</div>
+          <div class="step-desc">Le poste légitime (PC2) est remplacé physiquement par un équipement dont l'adresse MAC est inconnue du switch.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Déclenchement de la violation</div>
+          <div class="step-desc">Dès la réception de la première trame réseau provenant de la nouvelle adresse MAC, le switch détecte la violation et réagit immédiatement.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Port placé en état err-disabled</div>
+          <div class="step-desc">Le port Fa0/1 est désactivé administrativement. <span class="status-err">err-disabled</span> — toute connectivité est coupée instantanément.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Remédiation par l'administrateur</div>
+          <div class="step-desc">Après analyse de l'incident, l'administrateur réactive manuellement le port via la séquence :</div>
+        </div>
+      </div>
+    </div>
+    <div class="code-block" style="margin-top:.75rem;">
+      <pre><span class="comment">! -- Réactivation du port après incident --</span>
+<span class="cmd">SW1(config)# interface FastEthernet0/1</span>
+<span class="cmd">SW1(config-if)# shutdown</span>
+<span class="cmd">SW1(config-if)# no shutdown</span></pre>
+    </div>
+  </div>
+
+  <!-- COMPETENCES -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">✓</span> Compétences mobilisées</div>
+    <div class="comp-row">
+      <span class="comp-badge">C1 – Gérer le patrimoine informatique</span>
+      <span class="comp-badge">Recenser et identifier les ressources numériques</span>
+      <span class="comp-badge">Vérifier les niveaux d'habilitation</span>
+      <span class="comp-badge">Vérifier la continuité de service</span>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:var(--muted);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);">
+    Théo Fauvel · BTS SIO SISR · E5 · Session 2024-2026
+  </div>
+
+</div>
+</body>
+</html>
