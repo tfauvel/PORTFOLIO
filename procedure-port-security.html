@@ -176,28 +176,7 @@
   <div class="section">
     <div class="section-title"><span class="section-num">3</span> Déploiement technique — Cisco IOS</div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Configuration appliquée sur le commutateur d'accès <strong>SW1</strong>, port utilisateur <strong>Fa0/1</strong>. L'option <code>sticky</code> permet un apprentissage dynamique de l'adresse MAC légitime, évitant toute saisie manuelle.</p>
-    <div class="code-block">
-      <pre><span class="comment">! -- Accès au mode configuration --</span>
-<span class="cmd">SW1# configure terminal</span>
-
-<span class="comment">! -- Sélection du port utilisateur --</span>
-<span class="cmd">SW1(config)# interface FastEthernet0/1</span>
-
-<span class="comment">! -- Passage en mode accès --</span>
-<span class="cmd">SW1(config-if)# switchport mode access</span>
-
-<span class="comment">! -- Activation du Port-Security --</span>
-<span class="cmd">SW1(config-if)# switchport port-security</span>
-
-<span class="comment">! -- Limitation à 1 adresse MAC autorisée --</span>
-<span class="cmd">SW1(config-if)# switchport port-security maximum 1</span>
-
-<span class="comment">! -- Apprentissage dynamique (sticky) --</span>
-<span class="cmd">SW1(config-if)# switchport port-security mac-address sticky</span>
-
-<span class="comment">! -- Action en cas de violation : désactivation du port --</span>
-<span class="cmd">SW1(config-if)# switchport port-security violation shutdown</span></pre>
-    </div>
+    <img src="capture-config-sw1.png" alt="Configuration Port-Security SW1" style="width:100%;border-radius:8px;border:1px solid var(--border);margin-bottom:.75rem;">
     <div class="alert">
       <span class="alert-icon">💡</span>
       <span class="alert-text">Le mode <strong>sticky</strong> enregistre automatiquement la première adresse MAC détectée dans la configuration courante du switch. Cela évite de saisir manuellement l'adresse et permet un déploiement rapide sur de nombreux ports.</span>
@@ -208,38 +187,7 @@
   <div class="section">
     <div class="section-title"><span class="section-num">4</span> Validation technique</div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Résultat de la commande <code style="background:var(--green-light);padding:1px 6px;border-radius:4px;color:var(--green-xdark);">show port-security interface fa0/1</code> après application de la configuration :</p>
-    <div class="validation-grid">
-      <div class="val-item">
-        <div class="val-key">Port Security</div>
-        <div class="val-value"><span class="status-ok">✓ Enabled</span></div>
-        <div class="val-note">Fonctionnalité activée sur Fa0/1</div>
-      </div>
-      <div class="val-item">
-        <div class="val-key">Port Status</div>
-        <div class="val-value"><span class="status-ok">✓ Secure-up</span></div>
-        <div class="val-note">Port actif, trafic autorisé</div>
-      </div>
-      <div class="val-item">
-        <div class="val-key">Violation Mode</div>
-        <div class="val-value">Shutdown</div>
-        <div class="val-note">Port désactivé en cas de violation</div>
-      </div>
-      <div class="val-item">
-        <div class="val-key">Maximum MAC Addresses</div>
-        <div class="val-value">1</div>
-        <div class="val-note">Un seul équipement autorisé</div>
-      </div>
-      <div class="val-item">
-        <div class="val-key">Sticky MAC Addresses</div>
-        <div class="val-value">1 (apprise dynamiquement)</div>
-        <div class="val-note">Adresse MAC du poste légitime enregistrée</div>
-      </div>
-      <div class="val-item">
-        <div class="val-key">Security Violation Count</div>
-        <div class="val-value">0</div>
-        <div class="val-note">Aucune violation détectée</div>
-      </div>
-    </div>
+    <img src="capture-show-portsecurity.png" alt="Résultat show port-security interface fa0/1" style="width:100%;border-radius:8px;border:1px solid var(--border);margin-bottom:.75rem;">
   </div>
 
   <!-- 5. TEST INTRUSION -->
