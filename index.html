@@ -6,123 +6,104 @@
 <title>Portfolio E5 – Théo Fauvel</title>
 <style>
   :root {
-    --green: #639922;
-    --green-light: #EAF3DE;
-    --green-dark: #3B6D11;
-    --green-xdark: #27500A;
-    --bg: #f8f9f7;
-    --white: #ffffff;
-    --text: #1a1a1a;
-    --muted: #6b7280;
-    --border: #e5e7eb;
-    --radius: 12px;
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;
+    --bg:#f8f9f7;--white:#ffffff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:12px;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 56px;
-  }
-  .nav-brand { font-weight: 600; font-size: 15px; color: var(--green-dark); letter-spacing: -0.3px; }
-  .nav-links { display: flex; }
-  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.15s; }
-  .nav-links a:hover { color: var(--text); background: var(--green-light); }
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;}
+  .nav-brand{font-weight:600;font-size:15px;color:var(--green-dark);}
+  .nav-links{display:flex;}
+  .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px;transition:all .15s;}
+  .nav-links a:hover{color:var(--text);background:var(--green-light);}
 
-  section { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
-  section + section { padding-top: 2rem; }
-  hr { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
+  section{max-width:860px;margin:0 auto;padding:4rem 2rem;}
+  section+section{padding-top:2rem;}
+  hr{border:none;border-top:1px solid var(--border);margin:0 2rem;}
 
   /* HERO */
-  #hero { padding-top: 5rem; padding-bottom: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
-  .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green-xdark); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; width: fit-content; }
-  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
-  h1 { font-size: 42px; font-weight: 700; letter-spacing: -1px; line-height: 1.15; }
-  h1 span { color: var(--green); }
-  .hero-sub { font-size: 17px; color: var(--muted); max-width: 520px; }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.15s; border: none; }
-  .btn-primary { background: var(--green); color: #fff; }
-  .btn-primary:hover { background: var(--green-dark); }
-  .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-  .btn-outline:hover { background: var(--white); border-color: var(--green); color: var(--green-dark); }
+  #hero{padding-top:5rem;padding-bottom:3rem;display:flex;flex-direction:column;gap:1.5rem;}
+  .badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green-xdark);font-size:12px;font-weight:500;padding:4px 12px;border-radius:20px;width:fit-content;}
+  .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  h1{font-size:42px;font-weight:700;letter-spacing:-1px;line-height:1.15;}
+  h1 span{color:var(--green);}
+  .hero-sub{font-size:17px;color:var(--muted);max-width:560px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .15s;border:none;}
+  .btn-primary{background:var(--green);color:#fff;}
+  .btn-primary:hover{background:var(--green-dark);}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+  .btn-outline:hover{background:var(--white);border-color:var(--green);color:var(--green-dark);}
+  .btn-sm{padding:6px 12px;font-size:12px;}
 
-  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;}
+  .section-header{margin-bottom:2rem;}
+  .section-label{font-size:11px;font-weight:600;letter-spacing:1.2px;color:var(--green);text-transform:uppercase;margin-bottom:6px;}
+  h2{font-size:26px;font-weight:700;letter-spacing:-.5px;}
+  .section-desc{font-size:15px;color:var(--muted);margin-top:6px;}
 
-  .section-header { margin-bottom: 2rem; }
-  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 1.2px; color: var(--green); text-transform: uppercase; margin-bottom: 6px; }
-  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
-  .section-desc { font-size: 15px; color: var(--muted); margin-top: 6px; }
-
-  /* PRÉSENTATION 3 plans */
-  .plans-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
-  @media(max-width:700px) { .plans-grid { grid-template-columns: 1fr; } }
-
-  .plan-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 10px; }
-  .plan-num { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 1px; text-transform: uppercase; }
-  .plan-title { font-size: 16px; font-weight: 700; }
-  .plan-body { font-size: 13px; color: var(--muted); flex: 1; }
-
-  .info-row { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 8px; }
-  .info-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+  /* PLANS GRID */
+  .plans-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+  @media(max-width:700px){.plans-grid{grid-template-columns:1fr;}}
+  .plan-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:flex;flex-direction:column;gap:10px;}
+  .plan-num{font-size:11px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;}
+  .plan-title{font-size:16px;font-weight:700;}
+  .plan-body{font-size:13px;color:var(--muted);flex:1;}
+  .info-row{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:8px;}
+  .info-icon{width:28px;height:28px;border-radius:6px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
 
   /* TIMELINE */
-  .timeline { display: flex; flex-direction: column; }
-  .tl-item { display: flex; gap: 14px; padding-bottom: 1.1rem; position: relative; }
-  .tl-item:not(:last-child)::after { content: ''; position: absolute; left: 18px; top: 36px; bottom: 0; width: 1px; background: var(--border); }
-  .tl-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--green-light); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
-  .tl-content { padding-top: 4px; }
-  .tl-date { font-size: 11px; color: var(--green); font-weight: 600; margin-bottom: 2px; }
-  .tl-title { font-size: 14px; font-weight: 600; }
-  .tl-sub { font-size: 12px; color: var(--muted); }
+  .timeline{display:flex;flex-direction:column;}
+  .tl-item{display:flex;gap:14px;padding-bottom:1.1rem;position:relative;}
+  .tl-item:not(:last-child)::after{content:'';position:absolute;left:18px;top:36px;bottom:0;width:1px;background:var(--border);}
+  .tl-dot{width:36px;height:36px;border-radius:50%;background:var(--green-light);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+  .tl-content{padding-top:4px;}
+  .tl-date{font-size:11px;color:var(--green);font-weight:600;margin-bottom:2px;}
+  .tl-title{font-size:14px;font-weight:600;}
+  .tl-sub{font-size:12px;color:var(--muted);}
 
   /* RÉALISATIONS */
-  .real-card { border-top: 3px solid transparent; transition: border-color 0.2s; }
-  .real-card:hover { border-top-color: var(--green); }
-  .real-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px; }
-  .real-title { font-size: 15px; font-weight: 600; }
-  .real-type { font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
-  .type-entreprise { background: #dbeafe; color: #1e40af; }
-  .type-formation { background: var(--green-light); color: var(--green-xdark); }
-  .real-desc { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
-  .comp-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-  .comp-tag { font-size: 11px; background: #f3f4f6; color: #374151; padding: 2px 7px; border-radius: 4px; }
+  .real-card{border-top:3px solid transparent;transition:border-color .2s;}
+  .real-card:hover{border-top-color:var(--green);}
+  .real-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px;}
+  .real-title{font-size:15px;font-weight:700;line-height:1.4;}
+  .real-type{font-size:11px;font-weight:500;padding:3px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;}
+  .type-e{background:#dbeafe;color:#1e40af;}
+  .type-f{background:var(--green-light);color:var(--green-xdark);}
+  .real-desc{font-size:13px;color:var(--muted);margin:6px 0 10px;}
+  .tech-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+  .tech-tag{font-size:11px;font-weight:600;background:#1e1e2e;color:#a6e3a1;padding:3px 8px;border-radius:4px;font-family:monospace;}
+  .comp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+  .comp-tag{font-size:11px;background:#f3f4f6;color:#374151;padding:2px 7px;border-radius:4px;}
+  .real-actions{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:10px;margin-top:4px;}
 
   /* VEILLE */
-  .veille-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-  .veille-source { font-size: 11px; color: var(--green); font-weight: 600; margin-bottom: 4px; }
-  .veille-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-  .veille-desc { font-size: 12px; color: var(--muted); }
+  .veille-source{font-size:11px;color:var(--green);font-weight:600;margin-bottom:4px;}
+  .veille-title{font-size:14px;font-weight:600;margin-bottom:4px;}
+  .veille-desc{font-size:12px;color:var(--muted);}
+  .veille-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
 
   /* SYNTHESE */
-  .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-  .synthese-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .synthese-table th { background: var(--green); color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; }
-  .synthese-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-  .synthese-table tr:last-child td { border-bottom: none; }
-  .synthese-table tr:nth-child(even) td { background: #fafaf9; }
-  .check { color: var(--green); font-weight: 700; text-align: center; }
+  .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);}
+  .synthese-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .synthese-table th{background:var(--green);color:#fff;padding:8px 10px;text-align:left;font-weight:600;}
+  .synthese-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .synthese-table tr:last-child td{border-bottom:none;}
+  .synthese-table tr:nth-child(even) td{background:#fafaf9;}
+  .check{color:var(--green);font-weight:700;text-align:center;}
 
   /* CONTACT */
-  #contact { background: var(--white); border-top: 1px solid var(--border); }
-  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-  .contact-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 1.25rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); transition: all 0.15s; background: var(--bg); }
-  .contact-item:hover { border-color: var(--green); background: var(--green-light); color: var(--green-dark); }
-  .contact-icon { font-size: 22px; }
-  .contact-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--green); }
-  .contact-value { font-size: 13px; text-align: center; word-break: break-all; }
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1.5rem;}
+  .contact-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:1.25rem 1rem;border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);transition:all .15s;background:var(--bg);}
+  .contact-item:hover{border-color:var(--green);background:var(--green-light);color:var(--green-dark);}
+  .contact-icon{font-size:22px;}
+  .contact-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green);}
+  .contact-value{font-size:13px;text-align:center;word-break:break-all;}
 
-  @media(max-width:600px) {
-    h1 { font-size: 28px; }
-    nav { padding: 0 1rem; }
-    .nav-links a { padding: 6px 6px; font-size: 11px; }
-    section { padding: 3rem 1rem; }
-  }
+  footer{background:var(--white);border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:13px;color:var(--muted);}
+  @media(max-width:600px){h1{font-size:28px;}nav{padding:0 1rem;}.nav-links a{padding:6px 6px;font-size:11px;}section{padding:3rem 1rem;}}
 </style>
 </head>
 <body>
@@ -142,7 +123,7 @@
 <section id="hero">
   <div class="badge"><span class="badge-dot"></span> BTS SIO – Option SISR · Session 2024-2026</div>
   <h1>Théo <span>Fauvel</span></h1>
-  <p class="hero-sub">Étudiant en BTS SIO SISR, passionné par les réseaux et l'infrastructure informatique, en stage à l'E2SE Business School de Caen.</p>
+  <p class="hero-sub">Technicien infrastructure en alternance à l'E2SE Business School — 2 700 utilisateurs, 550 postes, 2 sites. Je gère au quotidien le parc, le support et les déploiements d'une école supérieure de commerce en pleine croissance.</p>
   <div class="hero-actions">
     <a href="#realisations" class="btn btn-primary">Voir mes réalisations</a>
     <a href="#contact" class="btn btn-outline">Contact</a>
@@ -157,23 +138,20 @@
     <div class="section-label">01 — Présentation</div>
     <h2>Qui suis-je ?</h2>
   </div>
-
   <div class="plans-grid">
 
-    <!-- Plan 1 : Moi -->
     <div class="plan-card">
       <div class="plan-num">Moi</div>
       <div class="plan-title">Théo Fauvel</div>
       <p class="plan-body">Passionné par les réseaux et les infrastructures informatiques, j'aime comprendre et construire des systèmes robustes. Curieux et autonome, je m'investis autant en formation qu'en entreprise pour monter en compétences.</p>
-      <div style="margin-top:6px;">
+      <div>
         <div class="info-row"><span class="info-icon">📍</span><span>Caen, Normandie</span></div>
         <div class="info-row"><span class="info-icon">✉️</span><span>theo.fauvel@e2se.fr</span></div>
         <div class="info-row"><span class="info-icon">📞</span><span>00-00-00-00-00</span></div>
       </div>
-      <a href="cv.pdf" download class="btn btn-outline" style="margin-top:10px;justify-content:center;font-size:13px;">📄 Télécharger mon CV</a>
+      <a href="cv.pdf" download class="btn btn-outline" style="justify-content:center;font-size:13px;">📄 Télécharger mon CV</a>
     </div>
 
-    <!-- Plan 2 : Parcours -->
     <div class="plan-card">
       <div class="plan-num">Parcours</div>
       <div class="plan-title">Ma formation</div>
@@ -205,12 +183,11 @@
       </div>
     </div>
 
-    <!-- Plan 3 : Entreprise -->
     <div class="plan-card">
       <div class="plan-num">Entreprise</div>
       <div class="plan-title">E2SE Business School</div>
-      <p class="plan-body">École supérieure de commerce proposant des formations du Bac+2 au Bac+5 dans les domaines du management, du commerce et du digital.</p>
-      <div style="margin-top:6px;">
+      <p class="plan-body">École supérieure de commerce proposant des formations du Bac+2 au Bac+5. Le service informatique gère l'ensemble de l'infrastructure pour les 2 700 utilisateurs répartis sur les sites de Caen et du Havre.</p>
+      <div>
         <div class="info-row"><span class="info-icon">📍</span><span>Caen & Le Havre</span></div>
         <div class="info-row"><span class="info-icon">🏢</span><span>Enseignement supérieur privé</span></div>
         <div class="info-row"><span class="info-icon">💼</span><span>Service informatique interne</span></div>
@@ -233,70 +210,121 @@
 
     <div class="card real-card">
       <div class="real-header">
-        <span class="real-title">Installation et configuration d'un serveur Windows Server</span>
-        <span class="real-type type-entreprise">Entreprise</span>
+        <span class="real-title">Déploiement d'un serveur Windows Server 2022 avec Active Directory pour la gestion des utilisateurs E2SE</span>
+        <span class="real-type type-e">Entreprise</span>
       </div>
-      <p class="real-desc">Mise en place d'un serveur Windows Server avec Active Directory, gestion des utilisateurs et des GPO pour E2SE.</p>
+      <p class="real-desc">Mise en place d'un contrôleur de domaine, configuration des GPO, gestion des comptes utilisateurs et des droits d'accès pour les collaborateurs et étudiants.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">Windows Server 2022</span>
+        <span class="tech-tag">Active Directory</span>
+        <span class="tech-tag">GPO</span>
+        <span class="tech-tag">DNS</span>
+        <span class="tech-tag">DHCP</span>
+      </div>
       <div class="comp-tags">
         <span class="comp-tag">C1 – Patrimoine</span>
         <span class="comp-tag">C5 – Mise à disposition</span>
       </div>
+      <div class="real-actions">
+        <a href="docs/procedure-windows-server.pdf" download class="btn btn-outline btn-sm">📄 Documentation technique</a>
+        <a href="docs/schema-reseau-ad.png" target="_blank" class="btn btn-outline btn-sm">🗺️ Schéma réseau</a>
+      </div>
     </div>
 
     <div class="card real-card">
       <div class="real-header">
-        <span class="real-title">Déploiement du service WSUS</span>
-        <span class="real-type type-entreprise">Entreprise</span>
+        <span class="real-title">Déploiement et configuration du service WSUS pour la gestion des mises à jour du parc (550 postes)</span>
+        <span class="real-type type-e">Entreprise</span>
       </div>
-      <p class="real-desc">Mise en place et tests d'intégration du service WSUS sur le parc informatique. Création de procédures de déploiement.</p>
+      <p class="real-desc">Installation de WSUS sur Windows Server, configuration des règles d'approbation, tests d'intégration sur un groupe pilote puis déploiement sur l'ensemble du parc. Rédaction de la procédure de déploiement.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">Windows Server</span>
+        <span class="tech-tag">WSUS</span>
+        <span class="tech-tag">GPO</span>
+        <span class="tech-tag">PowerShell</span>
+      </div>
       <div class="comp-tags">
         <span class="comp-tag">C4 – Mode projet</span>
         <span class="comp-tag">C5 – Mise à disposition</span>
       </div>
+      <div class="real-actions">
+        <a href="docs/procedure-wsus.pdf" download class="btn btn-outline btn-sm">📄 Documentation technique</a>
+        <a href="docs/schema-wsus.png" target="_blank" class="btn btn-outline btn-sm">🗺️ Schéma réseau</a>
+      </div>
     </div>
 
     <div class="card real-card">
       <div class="real-header">
-        <span class="real-title">Gestion de tickets et support utilisateurs via GLPI</span>
-        <span class="real-type type-entreprise">Entreprise</span>
+        <span class="real-title">Gestion des incidents et support utilisateurs via GLPI pour 2 700 utilisateurs</span>
+        <span class="real-type type-e">Entreprise</span>
       </div>
-      <p class="real-desc">Traitement des incidents et demandes via GLPI, par mail ou en direct. Intégration de nouveaux collaborateurs.</p>
+      <p class="real-desc">Traitement quotidien des tickets (incidents niveau 1 et 2) via GLPI, par mail ou en direct. Intégration de nouveaux collaborateurs : création de comptes, configuration des postes et accès aux outils métier.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">GLPI</span>
+        <span class="tech-tag">Active Directory</span>
+        <span class="tech-tag">Office 365</span>
+        <span class="tech-tag">Windows 11</span>
+      </div>
       <div class="comp-tags">
         <span class="comp-tag">C2 – Incidents</span>
         <span class="comp-tag">C5 – Mise à disposition</span>
       </div>
+      <div class="real-actions">
+        <a href="docs/procedure-glpi.pdf" download class="btn btn-outline btn-sm">📄 Documentation technique</a>
+      </div>
     </div>
 
     <div class="card real-card">
       <div class="real-header">
-        <span class="real-title">Préparation de postes EBP</span>
-        <span class="real-type type-entreprise">Entreprise</span>
+        <span class="real-title">Préparation et déploiement de postes EBP dans le cadre d'un projet d'équipe</span>
+        <span class="real-type type-e">Entreprise</span>
       </div>
-      <p class="real-desc">Préparation et configuration de postes EBP en équipe dans le cadre d'un projet planifié.</p>
+      <p class="real-desc">Configuration et déploiement de postes avec le logiciel de gestion EBP. Travail en mode projet : définition des tâches, planification et suivi jusqu'à la mise en service.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">EBP</span>
+        <span class="tech-tag">Windows 11</span>
+        <span class="tech-tag">Déploiement image</span>
+      </div>
       <div class="comp-tags">
         <span class="comp-tag">C4 – Mode projet</span>
         <span class="comp-tag">C5 – Mise à disposition</span>
       </div>
+      <div class="real-actions">
+        <a href="docs/procedure-ebp.pdf" download class="btn btn-outline btn-sm">📄 Documentation technique</a>
+      </div>
     </div>
 
     <div class="card real-card">
       <div class="real-header">
-        <span class="real-title">Apprentissage HTML, CSS et PHP</span>
-        <span class="real-type type-formation">Formation</span>
+        <span class="real-title">Apprentissage des langages web (HTML, CSS, PHP) et support au service communication</span>
+        <span class="real-type type-f">Formation</span>
       </div>
-      <p class="real-desc">Apprentissage des langages web et mise en place de matériels pour le service communication de l'école.</p>
+      <p class="real-desc">Initiation aux langages web dans le cadre du domaine 3. Mise en place de matériels pour le service communication de l'école.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">PHP</span>
+      </div>
       <div class="comp-tags">
         <span class="comp-tag">C3 – Présence en ligne</span>
         <span class="comp-tag">C6 – Développement pro.</span>
       </div>
+      <div class="real-actions">
+        <a href="docs/procedure-web.pdf" download class="btn btn-outline btn-sm">📄 Documentation technique</a>
+      </div>
     </div>
 
     <div class="card real-card">
       <div class="real-header">
-        <span class="real-title">Formations OpenClassrooms & présence LinkedIn</span>
-        <span class="real-type type-formation">Formation</span>
+        <span class="real-title">Développement professionnel : formations OpenClassrooms & gestion de l'identité numérique</span>
+        <span class="real-type type-f">Formation</span>
       </div>
-      <p class="real-desc">Suivi de parcours de formation en ligne et gestion de l'identité professionnelle sur LinkedIn et Indeed.</p>
+      <p class="real-desc">Suivi de parcours certifiants sur OpenClassrooms (réseaux, administration système). Gestion de mon identité professionnelle sur LinkedIn et Indeed pour développer mon projet professionnel.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">OpenClassrooms</span>
+        <span class="tech-tag">LinkedIn</span>
+        <span class="tech-tag">Indeed</span>
+      </div>
       <div class="comp-tags">
         <span class="comp-tag">C6 – Développement pro.</span>
       </div>
@@ -313,74 +341,68 @@
     <div class="section-label">03 — Veille</div>
     <h2>Veille technologique</h2>
   </div>
+  <div style="display:flex;flex-direction:column;gap:1rem;">
 
-  <!-- Source principale -->
-  <div class="card" style="margin-bottom:1.5rem;border-left:3px solid var(--green);display:flex;flex-direction:column;gap:10px;">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <span style="font-size:22px;">📡</span>
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Source principale</div>
-        <div style="font-size:15px;font-weight:700;">IT-Connect — Actualités IT & Cybersécurité</div>
+    <!-- IT-Connect -->
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <span style="font-size:22px;">📡</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Sujet : Cybersécurité & Systèmes · Outil : Lecture directe</div>
+          <div style="font-size:15px;font-weight:700;">IT-Connect — Actualités IT & Cybersécurité</div>
+        </div>
       </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Je consulte régulièrement les actualités IT-Connect pour suivre les évolutions du secteur : nouvelles vulnérabilités, mises à jour systèmes et bonnes pratiques réseaux. Ce site couvre l'administration système, les réseaux et la cybersécurité, directement liés à mon option SISR.</p>
+      <a href="https://www.it-connect.fr/palo-alto-networks-alerte-sur-une-nouvelle-zero-day-deja-exploitee-cve-2026-0300/" target="_blank" style="display:block;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;text-decoration:none;color:inherit;margin-bottom:10px;">
+        <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:4px;">🔴 Exemple · Cybersécurité · Mai 2026</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Zero-day Palo Alto Networks (CVE-2026-0300)</div>
+        <div style="font-size:12px;color:var(--muted);">Faille critique dans PAN-OS permettant une exécution de code à distance sans authentification, déjà exploitée. Ce type d'alerte me permet de rester vigilant sur les équipements réseau.</div>
+        <div style="font-size:12px;color:var(--green);margin-top:6px;font-weight:600;">Lire l'article →</div>
+      </a>
+      <a href="https://www.it-connect.fr/actualites/" target="_blank" class="btn btn-outline btn-sm" style="width:fit-content;">🔗 Voir les actualités IT-Connect</a>
     </div>
-    <p style="font-size:13px;color:var(--muted);">Je consulte régulièrement les actualités IT-Connect pour suivre les évolutions du secteur : nouvelles vulnérabilités, mises à jour systèmes, bonnes pratiques réseaux et sécurité. Ce site couvre l'administration système, les réseaux et la cybersécurité — des domaines directement liés à mon option SISR.</p>
-    <a href="https://www.it-connect.fr/actualites/" target="_blank" class="btn btn-outline" style="width:fit-content;font-size:13px;">🔗 Voir les actualités IT-Connect</a>
-  </div>
 
-  <!-- Autres sources -->
-  <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
-
-    <div class="card" style="border-left:3px solid var(--green);display:flex;flex-direction:column;gap:8px;">
-      <div style="display:flex;align-items:center;gap:10px;">
+    <!-- Office 365 -->
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
         <span style="font-size:22px;">📧</span>
         <div>
-          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Newsletter · Office 365</div>
-          <div style="font-size:15px;font-weight:700;">Actualités Microsoft 365</div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Sujet : Microsoft 365 · Outil : Newsletter e-mail</div>
+          <div style="font-size:15px;font-weight:700;">Newsletter Microsoft 365</div>
         </div>
       </div>
-      <p style="font-size:13px;color:var(--muted);">Je reçois sur ma boîte professionnelle une newsletter Microsoft 365 qui m'informe des nouveautés, évolutions et mises à jour de la suite Office. Je lis chaque édition en me demandant si les changements annoncés concernent notre environnement à l'E2SE — par exemple les évolutions de Teams, SharePoint ou les politiques de sécurité qui impactent directement les utilisateurs que je supporte.</p>
+      <p style="font-size:13px;color:var(--muted);">Je reçois sur ma boîte professionnelle une newsletter Microsoft 365 qui m'informe des nouveautés, évolutions et mises à jour de la suite Office. Je lis chaque édition en analysant si les changements concernent notre environnement à l'E2SE — évolutions de Teams, SharePoint ou politiques de sécurité impactant les utilisateurs que je supporte.</p>
     </div>
 
-    <div class="card" style="border-left:3px solid var(--green);display:flex;flex-direction:column;gap:8px;">
-      <div style="display:flex;align-items:center;gap:10px;">
+    <!-- SCCM / Intune -->
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
         <span style="font-size:22px;">🔧</span>
         <div>
-          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Newsletter · SCCM & Intune</div>
-          <div style="font-size:15px;font-weight:700;">Gestion du parc & déploiement</div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Sujet : Gestion de parc · Outil : Newsletter e-mail</div>
+          <div style="font-size:15px;font-weight:700;">Newsletter SCCM & Intune</div>
         </div>
       </div>
-      <p style="font-size:13px;color:var(--muted);">Je suis des newsletters dédiées à SCCM (Microsoft Configuration Manager) et Intune afin de rester informé des évolutions de ces outils de gestion de parc. Je fais le lien avec notre infrastructure à l'E2SE pour identifier ce qui pourrait s'appliquer à notre contexte : nouvelles fonctionnalités de déploiement, gestion des politiques ou supervision des postes.</p>
+      <p style="font-size:13px;color:var(--muted);">Je suis des newsletters dédiées à SCCM et Intune pour rester informé des évolutions de ces outils de gestion de parc. Je fais le lien avec notre infrastructure à l'E2SE pour identifier ce qui pourrait s'appliquer à notre contexte : nouvelles fonctionnalités de déploiement, gestion des politiques ou supervision des postes.</p>
     </div>
 
-    <div class="card" style="border-left:3px solid var(--green);display:flex;flex-direction:column;gap:8px;">
-      <div style="display:flex;align-items:center;gap:10px;">
+    <!-- Réseaux sociaux -->
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
         <span style="font-size:22px;">📱</span>
         <div>
-          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Réseaux sociaux · Actu Tech</div>
-          <div style="font-size:15px;font-weight:700;">Comptes d'actualités IT suivis</div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Sujet : Actu Tech générale · Outil : Instagram</div>
+          <div style="font-size:15px;font-weight:700;">Comptes d'actualités tech suivis</div>
         </div>
       </div>
-      <p style="font-size:13px;color:var(--muted);">Je suis plusieurs comptes d'actualités tech sur les réseaux sociaux pour me tenir informé au quotidien des tendances du secteur informatique.</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
-        <a href="https://www.instagram.com/01net/" target="_blank" class="btn btn-outline" style="font-size:12px;padding:6px 12px;">📷 @01net</a>
-        <a href="https://www.instagram.com/it_connect.fr/" target="_blank" class="btn btn-outline" style="font-size:12px;padding:6px 12px;">📷 @it_connect.fr</a>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Je suis plusieurs comptes d'actualités tech sur Instagram pour me tenir informé au quotidien des tendances du secteur informatique de façon accessible et régulière.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://www.instagram.com/01net/" target="_blank" class="btn btn-outline btn-sm">📷 @01net</a>
+        <a href="https://www.instagram.com/it_connect.fr/" target="_blank" class="btn btn-outline btn-sm">📷 @it_connect.fr</a>
       </div>
     </div>
 
   </div>
-
-  <!-- Article exemple IT-Connect -->
-  <a href="https://www.it-connect.fr/palo-alto-networks-alerte-sur-une-nouvelle-zero-day-deja-exploitee-cve-2026-0300/" target="_blank" class="card" style="text-decoration:none;color:inherit;display:block;border-left:3px solid var(--green);transition:transform 0.15s;margin-bottom:0;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-      <span style="font-size:22px;">🔴</span>
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Exemple d'article · Cybersécurité · Mai 2026</div>
-        <div style="font-size:15px;font-weight:700;">Zero-day Palo Alto Networks (CVE-2026-0300)</div>
-      </div>
-    </div>
-    <p style="font-size:13px;color:var(--muted);">Faille critique dans PAN-OS permettant une exécution de code à distance sans authentification, déjà exploitée par des cybercriminels. Ce type d'alerte me permet de rester vigilant sur les équipements réseau et de comprendre l'importance des mises à jour de sécurité dans un environnement professionnel.</p>
-    <div style="font-size:12px;color:var(--green);margin-top:8px;font-weight:600;">Lire l'article sur IT-Connect →</div>
-  </a>
 </section>
 
 <hr>
@@ -396,7 +418,7 @@
     <table class="synthese-table">
       <thead>
         <tr>
-          <th style="min-width:210px;">Réalisation professionnelle</th>
+          <th style="min-width:220px;">Réalisation professionnelle</th>
           <th title="Gérer le patrimoine">C1</th>
           <th title="Incidents et demandes">C2</th>
           <th title="Présence en ligne">C3</th>
@@ -406,19 +428,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Installation Windows Server</td><td class="check">✓</td><td></td><td></td><td></td><td class="check">✓</td><td></td></tr>
-        <tr><td>Déploiement WSUS</td><td></td><td></td><td></td><td class="check">✓</td><td class="check">✓</td><td></td></tr>
-        <tr><td>Gestion tickets GLPI / support</td><td></td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>Déploiement Windows Server / AD</td><td class="check">✓</td><td></td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>Déploiement WSUS (550 postes)</td><td></td><td></td><td></td><td class="check">✓</td><td class="check">✓</td><td></td></tr>
+        <tr><td>Support utilisateurs GLPI</td><td></td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td></td></tr>
         <tr><td>Intégration nouveaux collaborateurs</td><td class="check">✓</td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td></td></tr>
-        <tr><td>Préparation postes EBP</td><td></td><td></td><td></td><td class="check">✓</td><td class="check">✓</td><td></td></tr>
+        <tr><td>Déploiement postes EBP</td><td></td><td></td><td></td><td class="check">✓</td><td class="check">✓</td><td></td></tr>
         <tr><td>Apprentissage HTML, CSS, PHP</td><td></td><td></td><td class="check">✓</td><td></td><td></td><td class="check">✓</td></tr>
         <tr><td>Formations OpenClassrooms / LinkedIn</td><td></td><td></td><td></td><td></td><td></td><td class="check">✓</td></tr>
       </tbody>
     </table>
   </div>
   <p style="font-size:12px;color:var(--muted);margin-top:10px;">C1 Patrimoine · C2 Incidents · C3 Présence en ligne · C4 Mode projet · C5 Mise à disposition · C6 Développement pro.</p>
-  <div style="margin-top:1rem;">
-    <a href="#" onclick="window.print();return false;" class="btn btn-outline">🖨️ Télécharger en PDF</a>
+  <div style="margin-top:1rem;display:flex;gap:10px;flex-wrap:wrap;">
+    <a href="docs/tableau-synthese-officiel.pdf" download class="btn btn-outline">📥 Télécharger le tableau de synthèse officiel (PDF)</a>
+    <a href="#" onclick="window.print();return false;" class="btn btn-outline">🖨️ Imprimer cette page</a>
   </div>
 </section>
 
@@ -429,18 +452,12 @@
   <div class="section-header">
     <div class="section-label">05 — Contact</div>
     <h2>Me retrouver</h2>
-    <p class="section-desc">Tous mes liens et coordonnées</p>
   </div>
   <div class="contact-grid">
     <a href="mailto:theo.fauvel@e2se.fr" class="contact-item">
       <span class="contact-icon">✉️</span>
       <span class="contact-label">Email</span>
       <span class="contact-value">theo.fauvel@e2se.fr</span>
-    </a>
-    <a href="tel:0000000000" class="contact-item">
-      <span class="contact-icon">📞</span>
-      <span class="contact-label">Téléphone</span>
-      <span class="contact-value">00-00-00-00-00</span>
     </a>
     <a href="https://linkedin.com/in/[votre-profil]" target="_blank" class="contact-item">
       <span class="contact-icon">💼</span>
@@ -452,16 +469,17 @@
       <span class="contact-label">GitHub</span>
       <span class="contact-value">github.com/[username]</span>
     </a>
-    <a href="https://indeed.com/[votre-profil]" target="_blank" class="contact-item">
-      <span class="contact-icon">🔍</span>
-      <span class="contact-label">Indeed</span>
-      <span class="contact-value">indeed.com/[profil]</span>
+    <a href="https://www.instagram.com/[votre-profil]" target="_blank" class="contact-item">
+      <span class="contact-icon">📷</span>
+      <span class="contact-label">Instagram</span>
+      <span class="contact-value">@[profil]</span>
     </a>
   </div>
 </section>
 
-<footer style="background:var(--white);border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:13px;color:var(--muted);">
-  <strong>Théo Fauvel</strong> — Portfolio E5 · BTS SIO SISR · E2SE Business School · Session 2024-2026
+<footer>
+  <strong>Théo Fauvel</strong> — Portfolio E5 · BTS SIO SISR · E2SE Business School · Session 2024-2026<br>
+  <span style="font-size:11px;margin-top:4px;display:block;">theo.fauvel@e2se.fr · Caen</span>
 </footer>
 
 </body>
