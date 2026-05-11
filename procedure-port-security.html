@@ -91,46 +91,16 @@
 
   <!-- HEADER -->
   <div class="doc-header">
-    <div class="doc-meta">
-      <span class="meta-tag">BTS SIO SISR</span>
-      <span class="meta-tag">Épreuve E5</span>
-      <span class="meta-tag">Formation</span>
-      <span class="meta-tag">Couche 2 – Sécurité</span>
-    </div>
+
     <div class="doc-title">Sécurisation des accès physiques réseau par Port-Security sur équipements Cisco</div>
     <div class="doc-sub">Théo Fauvel · Saint-Ursule, Caen · Session 2024-2026</div>
-    <div class="tech-row" style="margin-top:1rem;">
-      <span class="tech-tag">Cisco IOS</span>
-      <span class="tech-tag">Port-Security</span>
-      <span class="tech-tag">Sticky MAC</span>
-      <span class="tech-tag">Trunk 802.1Q</span>
-      <span class="tech-tag">Packet Tracer</span>
-    </div>
+
   </div>
 
   <!-- 1. CONTEXTE -->
   <div class="section">
     <div class="section-title"><span class="section-num">1</span> Contexte et objectif</div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">L'objectif de cette intervention est de sécuriser la couche d'accès (Couche 2 OSI) de l'infrastructure réseau. Afin de prévenir le branchement d'équipements non autorisés ou les attaques de type <strong>MAC Spoofing</strong>, un filtrage strict par adresse MAC a été mis en place sur les ports utilisateurs.</p>
-    <div class="info-grid">
-      <div class="info-box">
-        <div class="info-label">Menace ciblée</div>
-        <div class="info-value">MAC Spoofing / équipements non autorisés</div>
-      </div>
-      <div class="info-box">
-        <div class="info-label">Couche OSI</div>
-        <div class="info-value">Couche 2 — Liaison de données</div>
-      </div>
-      <div class="info-box">
-        <div class="info-label">Méthode retenue</div>
-        <div class="info-value">Sticky MAC Address</div>
-        <div class="info-sub">Apprentissage dynamique — pas de saisie manuelle</div>
-      </div>
-      <div class="info-box">
-        <div class="info-label">Action en cas de violation</div>
-        <div class="info-value">Shutdown — port err-disabled</div>
-      </div>
-    </div>
+    <p style="font-size:13px;color:var(--muted);">L'objectif de ce TP est de sécuriser la couche d'accès réseau en empêchant le branchement d'équipements non autorisés. Pour cela, un filtrage par adresse MAC a été mis en place sur les ports utilisateurs via la fonctionnalité Port-Security de Cisco IOS, avec apprentissage automatique (sticky) et désactivation du port en cas de violation.</p>
   </div>
 
   <!-- 2. TOPOLOGIE -->
@@ -229,19 +199,6 @@
 <span class="cmd">SW1(config)# interface FastEthernet0/1</span>
 <span class="cmd">SW1(config-if)# shutdown</span>
 <span class="cmd">SW1(config-if)# no shutdown</span></pre>
-    </div>
-  </div>
-
-  <!-- COMPETENCES -->
-  <div class="section">
-    <div class="section-title"><span class="section-num">✓</span> Compétences mobilisées</div>
-    <div class="comp-row">
-      <span class="comp-badge">C1 – Gérer le patrimoine informatique</span>
-      <span class="comp-badge">Recenser et identifier les ressources numériques</span>
-      <span class="comp-badge">Vérifier les niveaux d'habilitation</span>
-      <span class="comp-badge">Vérifier la continuité de service</span>
-      <span class="comp-badge">C2 – Répondre aux incidents</span>
-      <span class="comp-badge">Traitement de l'état err-disabled et remédiation</span>
     </div>
   </div>
 
