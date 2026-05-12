@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renouvellement iMac – Théo Fauvel</title>
+<style>
+  :root{--green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;--bg:#f8f9f7;--white:#fff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:10px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;}
+  .doc{max-width:820px;margin:0 auto;}
+  .doc-header{background:var(--green-dark);color:#fff;border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;}
+  .doc-title{font-size:22px;font-weight:700;margin-bottom:.5rem;}
+  .doc-sub{font-size:13px;opacity:.8;}
+  .tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+  .tech-tag{background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;font-family:monospace;}
+  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;}
+  .section-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid var(--green-light);}
+  .section-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  .steps{display:flex;flex-direction:column;gap:.75rem;}
+  .step{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{width:28px;height:28px;background:var(--green-light);border:2px solid var(--green);color:var(--green-xdark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .step-title{font-size:13px;font-weight:700;margin-bottom:2px;}
+  .step-desc{font-size:12px;color:var(--muted);}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem;}
+  .info-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.875rem;}
+  .info-label{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;}
+  .info-value{font-size:13px;font-weight:600;}
+  .capture-block{margin:.75rem 0;}
+  .capture-label{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+  .capture-img{width:100%;border-radius:8px;border:1px solid var(--border);display:block;}
+  footer{text-align:center;font-size:12px;color:var(--muted);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="doc-header">
+    <div class="doc-title">Renouvellement des iMac d'une salle informatique</div>
+    <div class="doc-sub">Théo Fauvel · E2SE Business School · Session 2024-2026</div>
+    <div class="tech-row">
+      <span class="tech-tag">macOS</span>
+      <span class="tech-tag">JAMF Pro</span>
+      <span class="tech-tag">GLPI</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">1</span> Contexte</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Le parc iMac d'une salle informatique de l'E2SE a été renouvelé. J'ai pris en charge le décommissionnement des anciens équipements ainsi que la configuration et la mise en service des 25 nouveaux iMac, en m'appuyant sur JAMF Pro pour pousser les configurations à distance.</p>
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-label">Nombre d'iMac</div>
+        <div class="info-value">25 iMac</div>
+      </div>
+      <div class="info-box">
+        <div class="info-label">Outil de configuration</div>
+        <div class="info-value">JAMF Pro</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">2</span> Déroulé</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Décommissionnement des anciens iMac</div>
+          <div class="step-desc">Suppression des équipements de JAMF Pro et de l'inventaire GLPI, effacement des données et préparation au retrait physique.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Enrôlement dans JAMF Pro</div>
+          <div class="step-desc">Enrôlement des 25 nouveaux iMac dans JAMF Pro pour les intégrer au groupe de la salle et leur appliquer les profils de configuration définis.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Déploiement des configurations via JAMF</div>
+          <div class="step-desc">Déploiement à distance des profils macOS depuis JAMF Pro : paramètres système, politiques de sécurité et applications nécessaires à la salle.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Mise à jour de l'inventaire GLPI</div>
+          <div class="step-desc">Référencement des nouveaux iMac dans GLPI avec leurs numéros de série, affectation à la salle et clôture du projet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">3</span> Console JAMF Pro — Groupe de la salle</div>
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Groupe de la salle iMac dans JAMF Pro</div>
+      <img src="capture-jamf-groupe.png" alt="Groupe salle iMac JAMF" class="capture-img">
+    </div>
+  </div>
+
+  <footer>Théo Fauvel · BTS SIO SISR · E5 · Session 2024-2026</footer>
+</div>
+</body>
+</html>
