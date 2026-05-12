@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Routage RIPv2 VLSM – Théo Fauvel</title>
+<style>
+  :root {
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;
+    --bg:#f8f9f7;--white:#ffffff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;}
+  .doc{max-width:820px;margin:0 auto;}
+
+  .doc-header{background:var(--green-dark);color:#fff;border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;}
+  .doc-title{font-size:22px;font-weight:700;line-height:1.3;margin-bottom:.5rem;}
+  .doc-sub{font-size:13px;opacity:.8;}
+  .tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+  .tech-tag{background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;font-family:monospace;}
+
+  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;}
+  .section-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid var(--green-light);}
+  .section-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+
+  /* TABLE */
+  .addr-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:.5rem;}
+  .addr-table th{background:var(--green);color:#fff;padding:8px 10px;text-align:left;font-weight:600;}
+  .addr-table td{padding:8px 10px;border-bottom:1px solid var(--border);}
+  .addr-table tr:last-child td{border-bottom:none;}
+  .addr-table tr:nth-child(even) td{background:#fafaf9;}
+  .net-badge{font-family:monospace;font-size:11px;background:var(--green-light);color:var(--green-xdark);padding:2px 6px;border-radius:4px;}
+
+  /* CAPTURE */
+  .capture-block{margin:.75rem 0;}
+  .capture-label{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+  .capture-img{width:100%;border-radius:8px;border:1px solid var(--border);display:block;}
+  .capture-placeholder{width:100%;background:#f3f4f6;border:2px dashed var(--border);border-radius:8px;padding:2rem;text-align:center;font-size:13px;color:var(--muted);}
+
+  /* ALERT */
+  .alert{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:.875rem;display:flex;gap:10px;align-items:flex-start;margin-top:.75rem;}
+  .alert-icon{font-size:18px;flex-shrink:0;}
+  .alert-text{font-size:12px;color:#92400e;line-height:1.5;}
+
+  /* STEPS */
+  .steps{display:flex;flex-direction:column;gap:.75rem;}
+  .step{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{width:28px;height:28px;background:var(--green-light);border:2px solid var(--green);color:var(--green-xdark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .step-content{flex:1;}
+  .step-title{font-size:13px;font-weight:700;margin-bottom:2px;}
+  .step-desc{font-size:12px;color:var(--muted);}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-title">Mise en place du routage RIPv2 avec des équipements Cisco</div>
+    <div class="doc-sub">Théo Fauvel · CaenSup Saint-Ursule · Session 2024-2026</div>
+    <div class="tech-row">
+      <span class="tech-tag">Cisco IOS</span>
+      <span class="tech-tag">RIPv2</span>
+      <span class="tech-tag">VLSM</span>
+      <span class="tech-tag">IPv4</span>
+      <span class="tech-tag">Packet Tracer</span>
+    </div>
+  </div>
+
+  <!-- 1. CONTEXTE -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">1</span> Contexte</div>
+    <p style="font-size:13px;color:var(--muted);">Ce TP a pour objectif de mettre en place un routage dynamique RIPv2 sur une topologie à trois routeurs (tripod). RIPv2 est utilisé ici pour son support des masques à longueur variable (VLSM), permettant d'optimiser l'adressage IPv4 à partir d'un seul bloc de 256 adresses.</p>
+  </div>
+
+  <!-- 2. TOPOLOGIE -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">2</span> Topologie</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">La topologie comprend 3 routeurs (R1, R2, R3), 3 switchs d'accès et 3 postes clients. R1 est le routeur central connecté aux deux autres via des liaisons point-à-point /30.</p>
+    <img src="schema-ripv2.png" alt="Topologie RIPv2 VLSM" class="capture-img">
+  </div>
+
+  <!-- 3. PLAN D'ADRESSAGE -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">3</span> Plan d'adressage VLSM</div>
+    <table class="addr-table">
+      <thead>
+        <tr>
+          <th>Réseau</th>
+          <th>Masque</th>
+          <th>Contrainte</th>
+          <th>Plage adressable</th>
+          <th>Diffusion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="net-badge">LAN R1</span></td><td>192.168.1.0/25</td><td>100 adresses</td><td>192.168.1.1 → 192.168.1.126</td><td>192.168.1.127</td></tr>
+        <tr><td><span class="net-badge">LAN R2</span></td><td>192.168.1.128/26</td><td>50 adresses</td><td>192.168.1.129 → 192.168.1.190</td><td>192.168.1.191</td></tr>
+        <tr><td><span class="net-badge">LAN R3</span></td><td>192.168.1.192/27</td><td>25 adresses</td><td>192.168.1.193 → 192.168.1.222</td><td>192.168.1.223</td></tr>
+        <tr><td><span class="net-badge">R1–R2</span></td><td>192.168.1.224/30</td><td>4 adresses</td><td>192.168.1.225 → 192.168.1.226</td><td>192.168.1.227</td></tr>
+        <tr><td><span class="net-badge">R1–R3</span></td><td>192.168.1.228/30</td><td>4 adresses</td><td>192.168.1.229 → 192.168.1.230</td><td>192.168.1.231</td></tr>
+        <tr><td><span class="net-badge">R2–R3</span></td><td>192.168.1.232/30</td><td>4 adresses</td><td>192.168.1.233 → 192.168.1.234</td><td>192.168.1.235</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4. CONFIGURATION -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">4</span> Configuration RIPv2 — Cisco IOS</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">La configuration RIPv2 a été appliquée sur chacun des trois routeurs. La commande <code style="background:var(--green-light);padding:1px 6px;border-radius:4px;color:var(--green-xdark);">no auto-summary</code> est indispensable pour que RIPv2 respecte les masques VLSM et ne résume pas les routes de façon incorrecte.</p>
+
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Configuration RIPv2 sur R1</div>
+      <img src="capture-config-r1.png" alt="Config RIPv2 R1" class="capture-img">
+    </div>
+
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Configuration RIPv2 sur R2</div>
+      <img src="capture-config-r2.png" alt="Config RIPv2 R2" class="capture-img">
+    </div>
+
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Configuration RIPv2 sur R3</div>
+      <img src="capture-config-r3.png" alt="Config RIPv2 R3" class="capture-img">
+    </div>
+  </div>
+
+  <!-- 5. VALIDATION -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">5</span> Validation — Tables de routage</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">La commande <code style="background:var(--green-light);padding:1px 6px;border-radius:4px;color:var(--green-xdark);">show ip route</code> permet de vérifier que chaque routeur a bien appris les routes des autres réseaux via RIPv2 (routes marquées <strong>R</strong>).</p>
+
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — show ip route sur R1</div>
+      <img src="capture-route-r1.png" alt="Table de routage R1" class="capture-img">
+    </div>
+
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — show ip route sur R2</div>
+      <img src="capture-route-r2.png" alt="Table de routage R2" class="capture-img">
+    </div>
+
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — show ip route sur R3</div>
+      <img src="capture-route-r3.png" alt="Table de routage R3" class="capture-img">
+    </div>
+  </div>
+
+  <!-- 6. TEST -->
+  <div class="section">
+    <div class="section-title"><span class="section-num">6</span> Test de connectivité</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Des pings entre les postes clients de LAN différents confirment que le routage RIPv2 fonctionne correctement sur toute la topologie.</p>
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Ping PC0 → PC1 et PC0 → PC2</div>
+      <img src="capture-ping-ripv2.png" alt="Test ping RIPv2" class="capture-img">
+    </div>
+    <div class="alert">
+      <span class="alert-icon">💡</span>
+      <span class="alert-text">Un ping réussi entre deux postes sur des LANs différents (ex: PC0 sur LAN R1 vers PC2 sur LAN R3) prouve que les routes sont correctement propagées par RIPv2 sur l'ensemble des routeurs.</span>
+    </div>
+  </div>
+
+  <footer>Théo Fauvel · BTS SIO SISR · E5 · Session 2024-2026</footer>
+</div>
+</body>
+</html>
