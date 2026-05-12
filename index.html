@@ -178,11 +178,11 @@
       <div>
         <div class="info-row"><span class="info-icon">📍</span><span>Caen, Normandie</span></div>
         <div class="info-row"><span class="info-icon">✉️</span><span>theo.fauvel50@gmail.com</span></div>
-        <div class="info-row"><span class="info-icon">📞</span><span>00-00-00-00-00</span></div>
+
       </div>
       <div style="display:flex;gap:8px;">
-        <button onclick="openPdf('cv.pdf','Mon CV')" class="btn btn-outline" style="justify-content:center;font-size:13px;flex:1;">👁️ Visualiser</button>
-        <a href="cv.pdf" download class="btn btn-primary" style="justify-content:center;font-size:13px;flex:1;">⬇️ Télécharger</a>
+        <button onclick="openPdf('cv.pdf','Mon CV')" class="btn btn-outline" style="justify-content:center;font-size:13px;flex:1;">👁️ Voir mon CV</button>
+        <a href="cv.pdf" download class="btn btn-primary" style="justify-content:center;font-size:13px;flex:1;">⬇️ Télécharger mon CV</a>
       </div>
     </div>
     <div class="plan-card">
@@ -194,7 +194,7 @@
           <div class="tl-content">
             <div class="tl-date">Seconde</div>
             <div class="tl-title">MTNE option SN</div>
-            <div class="tl-sub">Lycée Charles Tellier · Condé-en-Normandie</div>
+            <div class="tl-sub">Lycée Curie Corot · Saint-Lô</div>
           </div>
         </div>
         <div class="tl-item">
@@ -210,7 +210,7 @@
           <div class="tl-content">
             <div class="tl-date">2024 – 2026</div>
             <div class="tl-title">BTS SIO option SISR</div>
-            <div class="tl-sub">Saint-Ursule · Caen</div>
+            <div class="tl-sub">CaenSup Saint-Ursule · Caen</div>
           </div>
         </div>
       </div>
@@ -584,7 +584,7 @@ function showCat(cat) {
 }
 
 function openPdf(url, title) {
-  document.getElementById('pdfFrame').src = url;
+  document.getElementById('pdfFrame').src = url + '?v=' + Date.now();
   document.getElementById('pdfTitle').textContent = title;
   document.getElementById('pdfDownload').href = url;
   document.getElementById('pdfModal').classList.add('open');
