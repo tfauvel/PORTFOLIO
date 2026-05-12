@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAMF MDM – Théo Fauvel</title>
+<style>
+  :root{--green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;--bg:#f8f9f7;--white:#fff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:10px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;}
+  .doc{max-width:820px;margin:0 auto;}
+  .doc-header{background:var(--green-dark);color:#fff;border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;}
+  .doc-title{font-size:22px;font-weight:700;margin-bottom:.5rem;}
+  .doc-sub{font-size:13px;opacity:.8;}
+  .tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+  .tech-tag{background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;font-family:monospace;}
+  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;}
+  .section-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid var(--green-light);}
+  .section-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  .device-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem;}
+  .device-box{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;padding:1rem;}
+  .device-icon{font-size:20px;margin-bottom:6px;}
+  .device-title{font-size:13px;font-weight:700;margin-bottom:4px;}
+  .device-desc{font-size:12px;color:var(--muted);}
+  .capture-block{margin:.75rem 0;}
+  .capture-label{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+  .capture-img{width:100%;border-radius:8px;border:1px solid var(--border);display:block;}
+  footer{text-align:center;font-size:12px;color:var(--muted);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="doc-header">
+    <div class="doc-title">Gestion et administration d'une flotte mobile (MDM) via JAMF Pro</div>
+    <div class="doc-sub">Théo Fauvel · E2SE Business School · Session 2024-2026</div>
+    <div class="tech-row">
+      <span class="tech-tag">JAMF Pro</span>
+      <span class="tech-tag">MDM</span>
+      <span class="tech-tag">iOS</span>
+      <span class="tech-tag">macOS</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">1</span> Contexte</div>
+    <p style="font-size:13px;color:var(--muted);">Au sein du service informatique de l'E2SE, j'administre le parc d'appareils Apple via la solution MDM JAMF Pro. Ce parc comprend des iPhones et des Mac répartis entre les collaborateurs de l'école. JAMF Pro me permet de gérer à distance l'ensemble de ces équipements de façon centralisée : configuration, sécurité, applications et supervision.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">2</span> Périmètre de gestion</div>
+    <div class="device-grid">
+      <div class="device-box">
+        <div class="device-icon">📱</div>
+        <div class="device-title">iPhones</div>
+        <div class="device-desc">Gestion des profils MDM, configuration des politiques de sécurité (code PIN, chiffrement) et supervision des applications installées.</div>
+      </div>
+      <div class="device-box">
+        <div class="device-icon">💻</div>
+        <div class="device-title">Mac</div>
+        <div class="device-desc">Déploiement des configurations système, gestion des profils utilisateurs et supervision de l'état des équipements depuis la console JAMF.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">3</span> Console JAMF Pro</div>
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Groupe de la salle iMac dans JAMF Pro</div>
+      <img src="capture-jamf-groupe.png" alt="Groupe salle iMac JAMF" class="capture-img">
+    </div>
+  </div>
+
+  <footer>Théo Fauvel · BTS SIO SISR · E5 · Session 2024-2026</footer>
+</div>
+</body>
+</html>
