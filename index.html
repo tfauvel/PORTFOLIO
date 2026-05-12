@@ -1,4 +1,300 @@
-<!-- 1ÈRE ANNÉE -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio E5 – Théo Fauvel</title>
+<style>
+  :root {
+    --green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;
+    --bg:#f8f9f7;--white:#ffffff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:12px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+
+  .pdf-modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:1rem;}
+  .pdf-modal.open{display:flex;}
+  .pdf-box{background:var(--white);border-radius:var(--radius);width:100%;max-width:860px;height:90vh;display:flex;flex-direction:column;overflow:hidden;}
+  .pdf-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0;}
+  .pdf-title{font-size:14px;font-weight:600;}
+  .pdf-actions{display:flex;gap:8px;align-items:center;}
+  .pdf-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1;}
+  .pdf-close:hover{color:var(--text);}
+  .pdf-frame{flex:1;border:none;width:100%;}
+
+  .img-modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;padding:1rem;}
+  .img-modal.open{display:flex;}
+  .img-box{background:var(--white);border-radius:var(--radius);width:100%;max-width:900px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;}
+  .img-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0;}
+  .img-body{flex:1;overflow:auto;display:flex;align-items:center;justify-content:center;padding:1rem;background:#f0f0f0;}
+  .img-body img{max-width:100%;max-height:70vh;border-radius:8px;object-fit:contain;}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;}
+  .nav-brand{font-weight:600;font-size:15px;color:var(--green-dark);}
+  .nav-links{display:flex;}
+  .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px;transition:all .15s;}
+  .nav-links a:hover{color:var(--text);background:var(--green-light);}
+
+  section{max-width:860px;margin:0 auto;padding:4rem 2rem;}
+  section+section{padding-top:2rem;}
+  hr{border:none;border-top:1px solid var(--border);margin:0 2rem;}
+
+  #hero{padding-top:5rem;padding-bottom:3rem;display:flex;flex-direction:column;gap:1.5rem;}
+  .badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green-xdark);font-size:12px;font-weight:500;padding:4px 12px;border-radius:20px;width:fit-content;}
+  .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  h1{font-size:42px;font-weight:700;letter-spacing:-1px;line-height:1.15;}
+  h1 span{color:var(--green);}
+  .hero-sub{font-size:17px;color:var(--muted);max-width:560px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .15s;border:none;}
+  .btn-primary{background:var(--green);color:#fff;}
+  .btn-primary:hover{background:var(--green-dark);}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+  .btn-outline:hover{background:var(--white);border-color:var(--green);color:var(--green-dark);}
+  .btn-sm{padding:6px 12px;font-size:12px;}
+
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;}
+  .section-header{margin-bottom:2rem;}
+  .section-label{font-size:11px;font-weight:600;letter-spacing:1.2px;color:var(--green);text-transform:uppercase;margin-bottom:6px;}
+  h2{font-size:26px;font-weight:700;letter-spacing:-.5px;}
+
+  .plans-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+  @media(max-width:700px){.plans-grid{grid-template-columns:1fr;}}
+  .plan-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:flex;flex-direction:column;gap:10px;}
+  .plan-num{font-size:11px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;}
+  .plan-title{font-size:16px;font-weight:700;}
+  .plan-body{font-size:13px;color:var(--muted);flex:1;}
+  .info-row{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:8px;}
+  .info-icon{width:28px;height:28px;border-radius:6px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+
+  .timeline{display:flex;flex-direction:column;}
+  .tl-item{display:flex;gap:14px;padding-bottom:1.1rem;position:relative;}
+  .tl-item:not(:last-child)::after{content:'';position:absolute;left:18px;top:36px;bottom:0;width:1px;background:var(--border);}
+  .tl-dot{width:36px;height:36px;border-radius:50%;background:var(--green-light);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+  .tl-content{padding-top:4px;}
+  .tl-date{font-size:11px;color:var(--green);font-weight:600;margin-bottom:2px;}
+  .tl-title{font-size:14px;font-weight:600;}
+  .tl-sub{font-size:12px;color:var(--muted);}
+
+  .real-card{border-top:3px solid transparent;transition:border-color .2s;}
+  .real-card:hover{border-top-color:var(--green);}
+  .real-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px;}
+  .real-title{font-size:15px;font-weight:700;line-height:1.4;}
+  .real-type{font-size:11px;font-weight:500;padding:3px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;}
+  .type-e{background:#dbeafe;color:#1e40af;}
+  .type-f{background:var(--green-light);color:var(--green-xdark);}
+  .real-desc{font-size:13px;color:var(--muted);margin:6px 0 10px;}
+  .tech-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+  .tech-tag{font-size:11px;font-weight:600;background:#1e1e2e;color:#a6e3a1;padding:3px 8px;border-radius:4px;font-family:monospace;}
+  .comp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+  .comp-tag{font-size:11px;background:#f3f4f6;color:#374151;padding:2px 7px;border-radius:4px;}
+  .real-actions{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:10px;margin-top:4px;}
+
+  .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);}
+  .synthese-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .synthese-table th{background:var(--green);color:#fff;padding:8px 10px;text-align:left;font-weight:600;}
+  .synthese-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .synthese-table tr:last-child td{border-bottom:none;}
+  .synthese-table tr:nth-child(even) td{background:#fafaf9;}
+  .check{color:var(--green);font-weight:700;text-align:center;}
+
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1.5rem;}
+  .contact-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:1.25rem 1rem;border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);transition:all .15s;background:var(--bg);}
+  .contact-item:hover{border-color:var(--green);background:var(--green-light);color:var(--green-dark);}
+  .contact-icon{font-size:22px;}
+  .contact-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green);}
+  .contact-value{font-size:13px;text-align:center;word-break:break-all;}
+
+  footer{background:var(--white);border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:13px;color:var(--muted);}
+  @media(max-width:600px){h1{font-size:28px;}nav{padding:0 1rem;}.nav-links a{padding:6px 6px;font-size:11px;}section{padding:3rem 1rem;}}
+</style>
+</head>
+<body>
+
+<!-- MODALE IMAGE -->
+<div class="img-modal" id="imgModal" onclick="closeImg(event)">
+  <div class="img-box">
+    <div class="img-header">
+      <span class="pdf-title" id="imgTitle">Schéma réseau</span>
+      <div class="pdf-actions">
+        <a id="imgDownload" href="#" download class="btn btn-outline btn-sm">⬇️ Télécharger</a>
+        <button class="pdf-close" onclick="closeImgDirect()">✕</button>
+      </div>
+    </div>
+    <div class="img-body"><img id="imgFrame" src="" alt="Schéma réseau"></div>
+  </div>
+</div>
+
+<!-- MODALE PDF -->
+<div class="pdf-modal" id="pdfModal" onclick="closePdf(event)">
+  <div class="pdf-box">
+    <div class="pdf-header">
+      <span class="pdf-title" id="pdfTitle">Document</span>
+      <div class="pdf-actions">
+        <a id="pdfDownload" href="#" target="_blank" class="btn btn-outline btn-sm">↗️ Ouvrir dans un onglet</a>
+        <button class="pdf-close" onclick="closePdfDirect()">✕</button>
+      </div>
+    </div>
+    <iframe class="pdf-frame" id="pdfFrame" src=""></iframe>
+  </div>
+</div>
+
+<nav>
+  <span class="nav-brand">Théo Fauvel — Portfolio E5</span>
+  <div class="nav-links">
+    <a href="#presentation">Profil</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#veille">Veille</a>
+    <a href="#synthese">Synthèse</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="badge"><span class="badge-dot"></span> BTS SIO – Option SISR · Session 2024-2026</div>
+  <h1>Théo <span>Fauvel</span></h1>
+  <p class="hero-sub">Technicien infrastructure en alternance à l'E2SE Business School — 2 700 utilisateurs, 550 postes, 2 sites. Je gère au quotidien le parc, le support et les déploiements d'une école supérieure de commerce en pleine croissance.</p>
+  <div class="hero-actions">
+    <a href="#realisations" class="btn btn-primary">Voir mes réalisations</a>
+    <a href="#contact" class="btn btn-outline">Contact</a>
+  </div>
+</section>
+
+<hr>
+
+<section id="presentation">
+  <div class="section-header">
+    <div class="section-label">01 — Présentation</div>
+    <h2>Qui suis-je ?</h2>
+  </div>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <div class="plan-num">Moi</div>
+      <div class="plan-title">Théo Fauvel</div>
+      <p class="plan-body">Passionné par les réseaux et les infrastructures informatiques, j'aime comprendre et construire des systèmes robustes. Curieux et autonome, je m'investis autant en formation qu'en entreprise pour monter en compétences.</p>
+      <div>
+        <div class="info-row"><span class="info-icon">📍</span><span>Caen, Normandie</span></div>
+        <div class="info-row"><span class="info-icon">✉️</span><span>theo.fauvel50@gmail.com</span></div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="openPdf('cv.pdf?v='+Date.now(),'Mon CV')" class="btn btn-outline" style="justify-content:center;font-size:13px;flex:1;">👁️ Voir mon CV</button>
+        <a href="cv.pdf" download class="btn btn-primary" style="justify-content:center;font-size:13px;flex:1;">⬇️ Télécharger mon CV</a>
+      </div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-num">Parcours</div>
+      <div class="plan-title">Ma formation</div>
+      <div class="timeline" style="margin-top:6px;">
+        <div class="tl-item">
+          <div class="tl-dot">📘</div>
+          <div class="tl-content">
+            <div class="tl-date">Seconde</div>
+            <div class="tl-title">MTNE option SN</div>
+            <div class="tl-sub">Lycée Curie Corot · Saint-Lô</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">📗</div>
+          <div class="tl-content">
+            <div class="tl-date">1ʳᵉ & Terminale</div>
+            <div class="tl-title">Bac SN option RISC</div>
+            <div class="tl-sub">Lycée Charles Tellier · Condé-en-Normandie</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">💻</div>
+          <div class="tl-content">
+            <div class="tl-date">2024 – 2026</div>
+            <div class="tl-title">BTS SIO option SISR</div>
+            <div class="tl-sub">CaenSup Saint-Ursule · Caen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-num">Entreprise</div>
+      <div class="plan-title">E2SE Business School</div>
+      <p class="plan-body">École supérieure de commerce proposant des formations du Bac+2 au Bac+5. Le service informatique gère l'ensemble de l'infrastructure pour les 2 700 utilisateurs répartis sur les sites de Caen et du Havre.</p>
+      <div>
+        <div class="info-row"><span class="info-icon">📍</span><span>Caen & Le Havre</span></div>
+        <div class="info-row"><span class="info-icon">🏢</span><span>Enseignement supérieur privé</span></div>
+        <div class="info-row"><span class="info-icon">💼</span><span>Service informatique interne</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="realisations">
+  <div class="section-header">
+    <div class="section-label">02 — Réalisations</div>
+    <h2>Réalisations professionnelles</h2>
+    <p style="font-size:15px;color:var(--muted);margin-top:6px;">En entreprise et en formation – 1ère et 2ème année</p>
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;">
+    <button onclick="showCat('formation')" id="tab-formation" class="btn btn-primary" style="font-size:13px;">🎓 Formation</button>
+    <button onclick="showCat('pro1')" id="tab-pro1" class="btn btn-outline" style="font-size:13px;">🏢 1ère année</button>
+    <button onclick="showCat('pro2')" id="tab-pro2" class="btn btn-outline" style="font-size:13px;">🏢 2ème année</button>
+  </div>
+
+  <!-- FORMATION -->
+  <div id="cat-formation" style="display:flex;flex-direction:column;gap:1rem;">
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Sécurisation des accès réseau de couche 2 (Port-Security) et filtrage sur équipements Cisco</span><span class="real-type type-f">Formation</span></div>
+      <p class="real-desc">Mise en œuvre de la sécurité de couche 2 sur switches Cisco : configuration du Port-Security pour limiter les accès non autorisés, prévention des attaques MAC flooding.</p>
+      <div class="tech-tags"><span class="tech-tag">Cisco IOS</span><span class="tech-tag">Port-Security</span><span class="tech-tag">Sticky MAC</span><span class="tech-tag">Packet Tracer</span></div>
+      <div class="comp-tags"><span class="comp-tag">C1 – Patrimoine</span></div>
+      <div class="real-actions">
+        <button onclick="openPdf('procedure-port-security.html?v='+Date.now(),'Port-Security Cisco')" class="btn btn-primary btn-sm">👁️ Visualiser</button>
+        <button onclick="openImg('schema-port-security.png','Schéma Port-Security')" class="btn btn-outline btn-sm">🗺️ Voir schéma</button>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Installation et configuration d'un service DHCP sous Debian</span><span class="real-type type-f">Formation</span></div>
+      <p class="real-desc">Déploiement d'un serveur DHCP sur Debian pour la distribution automatique des adresses IP. Configuration des plages, options (passerelle, DNS) et tests de validation.</p>
+      <div class="tech-tags"><span class="tech-tag">Debian</span><span class="tech-tag">isc-dhcp-server</span><span class="tech-tag">TCP/IP</span><span class="tech-tag">Linux</span></div>
+      <div class="comp-tags"><span class="comp-tag">C5 – Mise à disposition</span></div>
+      <div class="real-actions">
+        <button onclick="openPdf('procedure-dhcp-debian.pdf?v='+Date.now(),'DHCP Debian')" class="btn btn-primary btn-sm">👁️ Visualiser</button>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Travaux pratiques de programmation web — HTML & CSS</span><span class="real-type type-f">Formation</span></div>
+      <p class="real-desc">Réalisation de TPs consistant à reproduire des documents PDF en HTML/CSS. Découverte des bonnes pratiques de développement front-end.</p>
+      <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span></div>
+      <div class="comp-tags"><span class="comp-tag">C3 – Présence en ligne</span></div>
+      <div class="real-actions">
+        <button onclick="openPdf('tp-html-css.html?v='+Date.now(),'TP HTML CSS')" class="btn btn-primary btn-sm">👁️ Visualiser</button>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Mise en place du routage RIPv2 avec des équipements Cisco</span><span class="real-type type-f">Formation</span></div>
+      <p class="real-desc">Configuration du routage dynamique RIPv2 sur une topologie tripod à 3 routeurs Cisco. Mise en œuvre du VLSM pour optimiser l'adressage IPv4 à partir d'un bloc de 256 adresses.</p>
+      <div class="tech-tags"><span class="tech-tag">Cisco IOS</span><span class="tech-tag">RIPv2</span><span class="tech-tag">VLSM</span><span class="tech-tag">IPv4</span><span class="tech-tag">Packet Tracer</span></div>
+      <div class="comp-tags"><span class="comp-tag">C5 – Mise à disposition</span></div>
+      <div class="real-actions">
+        <button onclick="openPdf('procedure-ripv2.html?v='+Date.now(),'Routage RIPv2 VLSM Cisco')" class="btn btn-primary btn-sm">👁️ Visualiser</button>
+        <button onclick="openImg('schema-ripv2.png','Schéma Routage RIPv2')" class="btn btn-outline btn-sm">🗺️ Voir schéma</button>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Création d'un portfolio numérique en ligne</span><span class="real-type type-f">Formation</span></div>
+      <p class="real-desc">Conception et mise en ligne d'un portfolio sur GitHub Pages pour présenter mon parcours, mes réalisations et mes compétences dans le cadre de l'épreuve E5 du BTS SIO.</p>
+      <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">GitHub Pages</span></div>
+      <div class="comp-tags"><span class="comp-tag">C3 – Présence en ligne</span><span class="comp-tag">C6 – Développement pro.</span></div>
+    </div>
+
+  </div>
+
+  <!-- 1ÈRE ANNÉE -->
   <div id="cat-pro1" style="display:none;flex-direction:column;gap:1rem;">
 
     <div class="card real-card">
@@ -72,3 +368,252 @@
     </div>
 
   </div>
+
+  <!-- 2ÈME ANNÉE -->
+  <div id="cat-pro2" style="display:none;flex-direction:column;gap:1rem;">
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Installation, configuration et déploiement de WSUS sur le parc informatique</span><span class="real-type type-e">Entreprise</span></div>
+      <p class="real-desc">Mise en place du service WSUS pour centraliser la gestion des mises à jour Windows sur les 550 postes. Configuration des règles d'approbation, tests sur groupe pilote, déploiement progressif et rédaction de procédure.</p>
+      <div class="tech-tags"><span class="tech-tag">WSUS</span><span class="tech-tag">Windows Server</span><span class="tech-tag">GPO</span><span class="tech-tag">PowerShell</span></div>
+      <div class="comp-tags"><span class="comp-tag">C1 – Patrimoine</span><span class="comp-tag">C4 – Mode projet</span><span class="comp-tag">C5 – Mise à disposition</span></div>
+      <div class="real-actions">
+        <button onclick="openPdf('procedure-wsus.pdf?v='+Date.now(),'WSUS')" class="btn btn-primary btn-sm">👁️ Visualiser</button>
+        <button onclick="openImg('schema-wsus.png','Schéma WSUS')" class="btn btn-outline btn-sm">🗺️ Voir schéma</button>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Gestion et enrôlement d'une flotte mobile (MDM) via la solution JAMF</span><span class="real-type type-e">Entreprise</span></div>
+      <p class="real-desc">Enrôlement et gestion des appareils mobiles Apple via JAMF Pro. Configuration des profils MDM, déploiement des applications et politique de sécurité sur la flotte.</p>
+      <div class="tech-tags"><span class="tech-tag">JAMF Pro</span><span class="tech-tag">MDM</span><span class="tech-tag">Apple DEP</span><span class="tech-tag">iOS / macOS</span></div>
+      <div class="comp-tags"><span class="comp-tag">C1 – Patrimoine</span></div>
+      <div class="real-actions">
+        <button onclick="openPdf('procedure-jamf.pdf?v='+Date.now(),'JAMF MDM')" class="btn btn-primary btn-sm">👁️ Visualiser</button>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Préparation de 60 postes d'examen avec installation des logiciels métiers en local</span><span class="real-type type-e">Entreprise</span></div>
+      <p class="real-desc">Configuration et déploiement de 60 postes pour les examens : installation des logiciels métiers en mode hors-ligne, vérification des configurations et tests de validation.</p>
+      <div class="tech-tags"><span class="tech-tag">Windows 11</span><span class="tech-tag">Déploiement image</span><span class="tech-tag">SCCM</span></div>
+      <div class="comp-tags"><span class="comp-tag">C1 – Patrimoine</span><span class="comp-tag">C4 – Mode projet</span></div>
+      <div class="real-actions">
+        <button onclick="openPdf('procedure-postes-exam.pdf?v='+Date.now(),'Postes examens')" class="btn btn-primary btn-sm">👁️ Visualiser</button>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Renouvellement des iMac d'une salle informatique</span><span class="real-type type-e">Entreprise</span></div>
+      <p class="real-desc">Remplacement du parc iMac : décommissionnement des anciens équipements, configuration des nouveaux postes sous macOS, mise à jour de l'inventaire et mise en service.</p>
+      <div class="tech-tags"><span class="tech-tag">macOS</span><span class="tech-tag">JAMF</span><span class="tech-tag">GLPI</span></div>
+      <div class="comp-tags"><span class="comp-tag">C1 – Patrimoine</span><span class="comp-tag">C3 – Présence en ligne</span></div>
+      <div class="real-actions">
+        <button onclick="openPdf('procedure-renouvellement-imac.pdf?v='+Date.now(),'Renouvellement iMac')" class="btn btn-primary btn-sm">👁️ Visualiser</button>
+      </div>
+    </div>
+
+    <div class="card real-card">
+      <div class="real-header"><span class="real-title">Réalisation d'une veille technologique dans le domaine SISR</span><span class="real-type type-e">Entreprise</span></div>
+      <p class="real-desc">Mise en place d'une démarche de veille active : consultation régulière de sources spécialisées (IT-Connect, newsletters Microsoft 365, SCCM/Intune), analyse des évolutions pertinentes pour l'infrastructure E2SE.</p>
+      <div class="tech-tags"><span class="tech-tag">IT-Connect</span><span class="tech-tag">Newsletter M365</span><span class="tech-tag">Instagram Tech</span></div>
+      <div class="comp-tags"><span class="comp-tag">C6 – Développement pro.</span></div>
+    </div>
+
+  </div>
+</section>
+
+<hr>
+
+<!-- VEILLE -->
+<section id="veille">
+  <div class="section-header">
+    <div class="section-label">03 — Veille</div>
+    <h2>Veille technologique</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1rem;">
+
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <span style="font-size:22px;">📡</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Sujet : Cybersécurité & Systèmes · Outil : Lecture directe</div>
+          <div style="font-size:15px;font-weight:700;">IT-Connect — Actualités IT & Cybersécurité</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Je consulte régulièrement les actualités IT-Connect pour suivre les évolutions du secteur : nouvelles vulnérabilités, mises à jour systèmes et bonnes pratiques réseaux.</p>
+      <a href="https://www.it-connect.fr/palo-alto-networks-alerte-sur-une-nouvelle-zero-day-deja-exploitee-cve-2026-0300/" target="_blank" style="display:block;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;text-decoration:none;color:inherit;margin-bottom:10px;">
+        <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:4px;">🔴 Exemple · Cybersécurité · Mai 2026</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Zero-day Palo Alto Networks (CVE-2026-0300)</div>
+        <div style="font-size:12px;color:var(--muted);">Faille critique dans PAN-OS permettant une exécution de code à distance sans authentification, déjà exploitée.</div>
+        <div style="font-size:12px;color:var(--green);margin-top:6px;font-weight:600;">Lire l'article →</div>
+      </a>
+      <a href="https://www.it-connect.fr/actualites/" target="_blank" class="btn btn-outline btn-sm" style="width:fit-content;">🔗 Voir les actualités IT-Connect</a>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <span style="font-size:22px;">📧</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Sujet : Microsoft 365 · Outil : Newsletter e-mail</div>
+          <div style="font-size:15px;font-weight:700;">Newsletter Microsoft 365</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);">Je reçois sur ma boîte professionnelle une newsletter Microsoft 365 qui m'informe des nouveautés et évolutions de la suite Office. Je lis chaque édition en analysant si les changements concernent notre environnement à l'E2SE.</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <span style="font-size:22px;">🔧</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Sujet : Gestion de parc · Outil : Newsletter e-mail</div>
+          <div style="font-size:15px;font-weight:700;">Newsletter SCCM & Intune</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);">Je suis des newsletters dédiées à SCCM et Intune pour rester informé des évolutions de ces outils de gestion de parc et faire le lien avec notre infrastructure E2SE.</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <span style="font-size:22px;">📱</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Sujet : Actu Tech générale · Outil : Instagram</div>
+          <div style="font-size:15px;font-weight:700;">Comptes d'actualités tech suivis</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Je suis plusieurs comptes d'actualités tech sur Instagram pour me tenir informé au quotidien des tendances du secteur informatique.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://www.instagram.com/01net/" target="_blank" class="btn btn-outline btn-sm">📷 @01net</a>
+        <a href="https://www.instagram.com/it_connect.fr/" target="_blank" class="btn btn-outline btn-sm">📷 @it_connect.fr</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr>
+
+<section id="synthese">
+  <div class="section-header">
+    <div class="section-label">04 — Tableau de synthèse</div>
+    <h2>Synthèse des réalisations</h2>
+    <p style="font-size:15px;color:var(--muted);margin-top:6px;">BTS SIO SISR · E2SE Business School · Session 2024-2026</p>
+  </div>
+  <div class="table-wrap">
+    <table class="synthese-table">
+      <thead>
+        <tr>
+          <th style="min-width:220px;">Réalisation professionnelle</th>
+          <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>C6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Port-Security Cisco</td><td class="check">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>DHCP Debian</td><td></td><td></td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>TP HTML & CSS</td><td></td><td></td><td class="check">✓</td><td></td><td></td><td></td></tr>
+        <tr><td>Routage RIPv2 Cisco</td><td></td><td></td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>Portfolio GitHub Pages</td><td></td><td></td><td class="check">✓</td><td></td><td></td><td class="check">✓</td></tr>
+        <tr><td>Tickets GLPI</td><td></td><td class="check">✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>PXE / SCCM</td><td></td><td></td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>Licences SketchUp / AutoCAD</td><td class="check">✓</td><td class="check">✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Inventaire parc GLPI</td><td class="check">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Sauvegardes LTO / Veeam</td><td class="check">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Installation salle informatique</td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td></td><td></td></tr>
+        <tr><td>Intégration collaborateurs</td><td class="check">✓</td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td></td></tr>
+        <tr><td>WSUS (550 postes)</td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td class="check">✓</td><td></td></tr>
+        <tr><td>Flotte mobile JAMF</td><td class="check">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>60 postes examens</td><td class="check">✓</td><td></td><td></td><td class="check">✓</td><td></td><td></td></tr>
+        <tr><td>Renouvellement iMac</td><td class="check">✓</td><td></td><td class="check">✓</td><td></td><td></td><td></td></tr>
+        <tr><td>Veille technologique</td><td></td><td></td><td></td><td></td><td></td><td class="check">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-top:10px;">C1 Patrimoine · C2 Incidents · C3 Présence en ligne · C4 Mode projet · C5 Mise à disposition · C6 Développement pro.</p>
+  <div style="margin-top:1rem;display:flex;gap:10px;flex-wrap:wrap;">
+    <button onclick="openPdf('tableau-synthese-officiel.pdf?v='+Date.now(),'Tableau de synthèse officiel')" class="btn btn-outline">👁️ Visualiser le tableau officiel</button>
+    <a href="tableau-synthese-officiel.pdf" download class="btn btn-primary">⬇️ Télécharger le tableau officiel</a>
+  </div>
+</section>
+
+<hr>
+
+<section id="contact">
+  <div class="section-header">
+    <div class="section-label">05 — Contact</div>
+    <h2>Me retrouver</h2>
+  </div>
+  <div class="contact-grid">
+    <a href="mailto:theo.fauvel50@gmail.com" class="contact-item">
+      <span class="contact-icon">✉️</span>
+      <span class="contact-label">Email</span>
+      <span class="contact-value">theo.fauvel50@gmail.com</span>
+    </a>
+    <a href="https://www.linkedin.com/in/théo-fauvel-53338940a" target="_blank" class="contact-item">
+      <span class="contact-icon">💼</span>
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">Théo Fauvel</span>
+    </a>
+    <a href="https://github.com/tfauvel" target="_blank" class="contact-item">
+      <span class="contact-icon">🐙</span>
+      <span class="contact-label">GitHub</span>
+      <span class="contact-value">github.com/tfauvel</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <strong>Théo Fauvel</strong> — Portfolio E5 · BTS SIO SISR · E2SE Business School · Session 2024-2026<br>
+  <span style="font-size:11px;margin-top:4px;display:block;">theo.fauvel50@gmail.com · Caen</span>
+</footer>
+
+<script>
+function showCat(cat) {
+  ['formation','pro1','pro2'].forEach(c => {
+    var el = document.getElementById('cat-'+c);
+    var tab = document.getElementById('tab-'+c);
+    el.style.display = c === cat ? 'flex' : 'none';
+    tab.className = c === cat ? 'btn btn-primary' : 'btn btn-outline';
+    tab.style.fontSize = '13px';
+  });
+}
+
+function openPdf(url, title) {
+  document.getElementById('pdfFrame').src = url;
+  document.getElementById('pdfTitle').textContent = title;
+  document.getElementById('pdfDownload').href = url;
+  document.getElementById('pdfModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePdf(e) {
+  if (e.target === document.getElementById('pdfModal')) closePdfDirect();
+}
+
+function closePdfDirect() {
+  document.getElementById('pdfModal').classList.remove('open');
+  document.getElementById('pdfFrame').src = '';
+  document.body.style.overflow = '';
+}
+
+function openImg(url, title) {
+  document.getElementById('imgFrame').src = url;
+  document.getElementById('imgTitle').textContent = title;
+  document.getElementById('imgDownload').href = url;
+  document.getElementById('imgModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImg(e) {
+  if (e.target === document.getElementById('imgModal')) closeImgDirect();
+}
+
+function closeImgDirect() {
+  document.getElementById('imgModal').classList.remove('open');
+  document.getElementById('imgFrame').src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePdfDirect(); closeImgDirect(); } });
+</script>
+</body>
+</html>
