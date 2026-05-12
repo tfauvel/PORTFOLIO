@@ -46,7 +46,7 @@
 
   <div class="section">
     <div class="section-title"><span class="section-num">1</span> Contexte</div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Le parc iMac d'une salle informatique de l'E2SE a été renouvelé. J'ai pris en charge le décommissionnement des anciens équipements ainsi que la configuration et la mise en service des 25 nouveaux iMac, en m'appuyant sur JAMF Pro pour pousser les configurations à distance.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Le parc iMac d'une salle informatique de l'E2SE a été renouvelé. Ce projet a été réalisé en équipe et comprenait le décommissionnement des anciens équipements, l'installation physique des 25 nouveaux iMac ainsi que leur mise en service via JAMF.</p>
     <div class="info-grid">
       <div class="info-box">
         <div class="info-label">Nombre d'iMac</div>
@@ -54,7 +54,7 @@
       </div>
       <div class="info-box">
         <div class="info-label">Outil de configuration</div>
-        <div class="info-value">JAMF Pro</div>
+        <div class="info-value">JAMF</div>
       </div>
     </div>
   </div>
@@ -66,28 +66,28 @@
         <div class="step-num">1</div>
         <div>
           <div class="step-title">Décommissionnement des anciens iMac</div>
-          <div class="step-desc">Suppression des équipements de JAMF Pro et de l'inventaire GLPI, effacement des données et préparation au retrait physique.</div>
+          <div class="step-desc">Les anciens iMac ont été mis au stockage puis réinitialisés (effacement complet) avant d'être retirés de la salle.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div>
-          <div class="step-title">Enrôlement dans JAMF Pro</div>
-          <div class="step-desc">Enrôlement des 25 nouveaux iMac dans JAMF Pro pour les intégrer au groupe de la salle et leur appliquer les profils de configuration définis.</div>
+          <div class="step-title">Installation physique et câblage</div>
+          <div class="step-desc">Installation des 25 nouveaux iMac sur les bureaux, câblage réseau et branchement des périphériques. Les iMac étaient déjà enrôlés dans JAMF à la livraison.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div>
-          <div class="step-title">Déploiement des configurations via JAMF</div>
-          <div class="step-desc">Déploiement à distance des profils macOS depuis JAMF Pro : paramètres système, politiques de sécurité et applications nécessaires à la salle.</div>
+          <div class="step-title">Vérification de l'intégration dans JAMF</div>
+          <div class="step-desc">Vérification que l'ensemble des 25 iMac apparaissaient correctement dans JAMF et étaient bien rattachés au groupe de la salle.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <div>
-          <div class="step-title">Mise à jour de l'inventaire GLPI</div>
-          <div class="step-desc">Référencement des nouveaux iMac dans GLPI avec leurs numéros de série, affectation à la salle et clôture du projet.</div>
+          <div class="step-title">Déploiement des applications via JAMF</div>
+          <div class="step-desc">Déploiement à distance des applications nécessaires à la salle depuis JAMF, sur l'ensemble des 25 iMac en une seule opération.</div>
         </div>
       </div>
     </div>
