@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Licences SketchUp / AutoCAD – Théo Fauvel</title>
+<style>
+  :root{--green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;--bg:#f8f9f7;--white:#fff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:10px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;}
+  .doc{max-width:820px;margin:0 auto;}
+  .doc-header{background:var(--green-dark);color:#fff;border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;}
+  .doc-title{font-size:22px;font-weight:700;margin-bottom:.5rem;}
+  .doc-sub{font-size:13px;opacity:.8;}
+  .tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+  .tech-tag{background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;font-family:monospace;}
+  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;}
+  .section-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid var(--green-light);}
+  .section-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  .code-block{background:#1e1e2e;border-radius:8px;padding:1.25rem;overflow-x:auto;margin:.75rem 0;}
+  .code-block pre{color:#cdd6f4;font-family:'Courier New',monospace;font-size:12px;line-height:1.7;}
+  .code-block .cmd{color:#a6e3a1;}
+  .code-block .comment{color:#6c7086;font-style:italic;}
+  .capture-block{margin:.75rem 0;}
+  .capture-label{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+  .capture-img{width:100%;border-radius:8px;border:1px solid var(--border);display:block;}
+  .alert{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:.875rem;display:flex;gap:10px;align-items:flex-start;margin-top:.75rem;}
+  .alert-icon{font-size:18px;flex-shrink:0;}
+  .alert-text{font-size:12px;color:#92400e;line-height:1.5;}
+  footer{text-align:center;font-size:12px;color:var(--muted);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="doc-header">
+    <div class="doc-title">Gestion des licences logiciels métiers — SketchUp & AutoCAD</div>
+    <div class="doc-sub">Théo Fauvel · E2SE Business School · Session 2024-2026</div>
+    <div class="tech-row">
+      <span class="tech-tag">SketchUp</span>
+      <span class="tech-tag">AutoCAD</span>
+      <span class="tech-tag">PowerShell</span>
+      <span class="tech-tag">Active Directory</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">1</span> Contexte</div>
+    <p style="font-size:13px;color:var(--muted);">L'E2SE propose des formations en architecture et design d'intérieur qui nécessitent l'utilisation de logiciels 3D professionnels et coûteux : <strong>SketchUp</strong> (modélisation 3D) et <strong>AutoCAD</strong> (dessin assisté par ordinateur). Ces licences sont nominatives et gérées via les portails éditeurs respectifs. La gestion manuelle de plusieurs centaines de comptes étant chronophage et sujette aux erreurs, j'ai mis en place une solution d'automatisation.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">2</span> Automatisation via script PowerShell</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">J'ai développé un script PowerShell qui interroge l'Active Directory pour extraire automatiquement les informations des étudiants. Le script génère un fichier CSV contenant le <strong>Nom</strong>, le <strong>Prénom</strong> et le <strong>Mail</strong> de chaque étudiant, triés par classe. Ce fichier est ensuite importé directement dans les portails SketchUp et AutoCAD pour créer ou mettre à jour les comptes en masse.</p>
+    <div class="code-block">
+      <pre><span class="comment"># Export des étudiants par classe depuis l'Active Directory</span>
+<span class="cmd">Import-Module ActiveDirectory</span>
+
+<span class="cmd">Get-ADUser -Filter * -SearchBase "OU=Etudiants,DC=e2se,DC=local" `
+  -Properties GivenName, Surname, EmailAddress, Department |
+  Select-Object `
+    @{N='Prénom';E={$_.GivenName}}, `
+    @{N='Nom';E={$_.Surname}}, `
+    @{N='Mail';E={$_.EmailAddress}}, `
+    @{N='Classe';E={$_.Department}} |
+  Sort-Object Classe, Nom |
+  Export-Csv -Path "export_etudiants.csv" `
+    -NoTypeInformation -Encoding UTF8</span></pre>
+    </div>
+    <div class="alert">
+      <span class="alert-icon">💡</span>
+      <span class="alert-text">Ce script réduit considérablement le temps de création des comptes en début d'année scolaire et limite les erreurs de saisie. Le fichier CSV généré est directement compatible avec les outils d'import des portails éditeurs.</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">3</span> Interfaces d'administration</div>
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Interface d'administration SketchUp</div>
+      <img src="capture-admin-sketchup.png" alt="Admin SketchUp" class="capture-img">
+    </div>
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Interface d'administration AutoCAD</div>
+      <img src="capture-admin-autocad.png" alt="Admin AutoCAD" class="capture-img">
+    </div>
+  </div>
+
+  <footer>Théo Fauvel · BTS SIO SISR · E5 · Session 2024-2026</footer>
+</div>
+</body>
+</html>
