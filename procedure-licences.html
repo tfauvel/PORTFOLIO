@@ -51,25 +51,10 @@
 
   <div class="section">
     <div class="section-title"><span class="section-num">2</span> Automatisation via script PowerShell</div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">J'ai développé un script PowerShell qui interroge l'Active Directory pour extraire automatiquement les informations des étudiants. Le script génère un fichier CSV contenant le <strong>Nom</strong>, le <strong>Prénom</strong> et le <strong>Mail</strong> de chaque étudiant, triés par classe. Ce fichier est ensuite importé directement dans les portails SketchUp et AutoCAD pour créer ou mettre à jour les comptes en masse.</p>
-    <div class="code-block">
-      <pre><span class="comment"># Export des étudiants par classe depuis l'Active Directory</span>
-<span class="cmd">Import-Module ActiveDirectory</span>
-
-<span class="cmd">Get-ADUser -Filter * -SearchBase "OU=Etudiants,DC=e2se,DC=local" `
-  -Properties GivenName, Surname, EmailAddress, Department |
-  Select-Object `
-    @{N='Prénom';E={$_.GivenName}}, `
-    @{N='Nom';E={$_.Surname}}, `
-    @{N='Mail';E={$_.EmailAddress}}, `
-    @{N='Classe';E={$_.Department}} |
-  Sort-Object Classe, Nom |
-  Export-Csv -Path "export_etudiants.csv" `
-    -NoTypeInformation -Encoding UTF8</span></pre>
-    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">J'ai développé un script PowerShell qui interroge l'Active Directory pour extraire automatiquement les informations des étudiants. Il génère un fichier CSV contenant le <strong>Nom</strong>, le <strong>Prénom</strong> et le <strong>Mail</strong> de chaque étudiant, triés par classe. Ce fichier est ensuite importé directement dans les portails SketchUp et AutoCAD pour créer ou mettre à jour les comptes en masse, ce qui évite toute saisie manuelle et réduit considérablement le temps de traitement en début d'année scolaire.</p>
     <div class="alert">
       <span class="alert-icon">💡</span>
-      <span class="alert-text">Ce script réduit considérablement le temps de création des comptes en début d'année scolaire et limite les erreurs de saisie. Le fichier CSV généré est directement compatible avec les outils d'import des portails éditeurs.</span>
+      <span class="alert-text">Ce script est directement compatible avec les outils d'import des portails éditeurs, ce qui permet de fiabiliser la création des comptes et de limiter les erreurs.</span>
     </div>
   </div>
 
