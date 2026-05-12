@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Postes EBP – Théo Fauvel</title>
+<style>
+  :root{--green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;--bg:#f8f9f7;--white:#fff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:10px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;}
+  .doc{max-width:820px;margin:0 auto;}
+  .doc-header{background:var(--green-dark);color:#fff;border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;}
+  .doc-title{font-size:22px;font-weight:700;margin-bottom:.5rem;}
+  .doc-sub{font-size:13px;opacity:.8;}
+  .tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+  .tech-tag{background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;font-family:monospace;}
+  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;}
+  .section-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid var(--green-light);}
+  .section-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  .steps{display:flex;flex-direction:column;gap:.75rem;}
+  .step{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{width:28px;height:28px;background:var(--green-light);border:2px solid var(--green);color:var(--green-xdark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .step-title{font-size:13px;font-weight:700;margin-bottom:2px;}
+  .step-desc{font-size:12px;color:var(--muted);}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem;}
+  .info-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.875rem;}
+  .info-label{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;}
+  .info-value{font-size:13px;font-weight:600;}
+  footer{text-align:center;font-size:12px;color:var(--muted);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="doc-header">
+    <div class="doc-title">Préparation de 60 postes EBP pour les examens en établissements externes</div>
+    <div class="doc-sub">Théo Fauvel · E2SE Business School · Session 2024-2026</div>
+    <div class="tech-row">
+      <span class="tech-tag">EBP</span>
+      <span class="tech-tag">SCCM</span>
+      <span class="tech-tag">Windows 11</span>
+      <span class="tech-tag">Mode projet</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">1</span> Contexte du projet</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:.75rem;">Dans le cadre des examens en établissements externes, les étudiants de l'E2SE doivent disposer de PC portables équipés du logiciel métier EBP. Ces postes sont prêtés aux étudiants contre un chèque de caution géré par les collègues. Ce projet, mené en équipe, consistait à préparer 60 postes de A à Z dans un délai contraint avant les dates d'examens.</p>
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-label">Nombre de postes</div>
+        <div class="info-value">60 PC portables</div>
+      </div>
+      <div class="info-box">
+        <div class="info-label">Logiciel déployé</div>
+        <div class="info-value">EBP (en local)</div>
+      </div>
+      <div class="info-box">
+        <div class="info-label">Outil de déploiement</div>
+        <div class="info-value">SCCM — séquence de tâches dédiée</div>
+      </div>
+      <div class="info-box">
+        <div class="info-label">Destination</div>
+        <div class="info-value">Examens en établissements externes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">2</span> Déroulé du projet</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Définition des besoins et planification</div>
+          <div class="step-desc">Identification des logiciels à installer, définition du planning de préparation des postes en fonction des dates d'examens et répartition des tâches en équipe.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Création d'une image et d'une séquence de tâches SCCM dédiée</div>
+          <div class="step-desc">Création d'une image système spécifique incluant EBP installé en local, et élaboration d'une séquence de tâches SCCM pour déployer cette image sur les 60 postes de façon automatisée.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Déploiement et vérification</div>
+          <div class="step-desc">Déploiement de l'image via PXE sur l'ensemble des 60 postes. Vérification du bon fonctionnement d'EBP sur chaque machine avant la remise aux étudiants.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Remise aux étudiants</div>
+          <div class="step-desc">Les postes sont remis aux étudiants par les collègues contre un chèque de caution. À leur retour, les postes sont réintégrés au parc et réinitialisés.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Théo Fauvel · BTS SIO SISR · E5 · Session 2024-2026</footer>
+</div>
+</body>
+</html>
