@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tickets GLPI – Théo Fauvel</title>
+<style>
+  :root{--green:#639922;--green-light:#EAF3DE;--green-dark:#3B6D11;--green-xdark:#27500A;--bg:#f8f9f7;--white:#fff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--radius:10px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;}
+  .doc{max-width:820px;margin:0 auto;}
+  .doc-header{background:var(--green-dark);color:#fff;border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;}
+  .doc-title{font-size:22px;font-weight:700;margin-bottom:.5rem;}
+  .doc-sub{font-size:13px;opacity:.8;}
+  .tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+  .tech-tag{background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;font-family:monospace;}
+  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;}
+  .section-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid var(--green-light);}
+  .section-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  .ticket-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-top:.75rem;}
+  .ticket-item{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;}
+  .ticket-cat{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;min-width:80px;margin-top:2px;}
+  .ticket-desc{font-size:13px;color:var(--text);}
+  .capture-block{margin:.75rem 0;}
+  .capture-label{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+  .capture-img{width:100%;border-radius:8px;border:1px solid var(--border);display:block;}
+  .niveau-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem;}
+  .niveau-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:1rem;}
+  .niveau-label{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+  .niveau-title{font-size:14px;font-weight:700;margin-bottom:4px;}
+  .niveau-desc{font-size:12px;color:var(--muted);}
+  footer{text-align:center;font-size:12px;color:var(--muted);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="doc-header">
+    <div class="doc-title">Traitement de tickets d'incidents et de demandes via GLPI</div>
+    <div class="doc-sub">Théo Fauvel · E2SE Business School · Session 2024-2026</div>
+    <div class="tech-row">
+      <span class="tech-tag">GLPI</span>
+      <span class="tech-tag">Support N1/N2</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">1</span> Contexte et rôle</div>
+    <p style="font-size:13px;color:var(--muted);">Au sein du service informatique de l'E2SE, j'assure le support de niveau 1 et niveau 2 pour l'ensemble des 2 700 utilisateurs (étudiants et collaborateurs). Les demandes arrivent via trois canaux : la plateforme GLPI, le mail du service informatique, ou directement en présentiel. Je prends en charge chaque ticket de son ouverture jusqu'à sa résolution, en assurant un suivi rigoureux et une communication claire avec l'utilisateur.</p>
+    <div class="niveau-grid">
+      <div class="niveau-box">
+        <div class="niveau-label">Support N1</div>
+        <div class="niveau-title">Incidents courants</div>
+        <div class="niveau-desc">Problèmes matériels, réinitialisation de mots de passe, installation de logiciels, problèmes de connectivité réseau.</div>
+      </div>
+      <div class="niveau-box">
+        <div class="niveau-label">Support N2</div>
+        <div class="niveau-title">Incidents complexes</div>
+        <div class="niveau-desc">Dysfonctionnements applicatifs, problèmes de droits AD, incidents sur les services (messagerie, plateformes pédagogiques).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">2</span> Exemples de tickets traités</div>
+    <ul class="ticket-list">
+      <li class="ticket-item"><span class="ticket-cat">Matériel</span><span class="ticket-desc">Remplacement d'un écran défectueux ou d'un clavier / souris hors service sur un poste utilisateur.</span></li>
+      <li class="ticket-item"><span class="ticket-cat">Accès</span><span class="ticket-desc">Réinitialisation de mot de passe Active Directory ou déverrouillage de compte bloqué après tentatives échouées.</span></li>
+      <li class="ticket-item"><span class="ticket-cat">Réseau</span><span class="ticket-desc">Diagnostic et résolution d'une perte de connectivité réseau (câble, port switch, configuration IP incorrecte).</span></li>
+      <li class="ticket-item"><span class="ticket-cat">Logiciel</span><span class="ticket-desc">Installation ou mise à jour d'un logiciel métier sur un poste (SketchUp, AutoCAD, EBP, suite Office).</span></li>
+      <li class="ticket-item"><span class="ticket-cat">Impression</span><span class="ticket-desc">Résolution d'incidents sur les imprimantes réseau : file bloquée, driver manquant, configuration du port d'impression.</span></li>
+      <li class="ticket-item"><span class="ticket-cat">Messagerie</span><span class="ticket-desc">Problèmes de synchronisation Office 365 (Outlook, Teams) ou configuration sur un nouvel équipement.</span></li>
+      <li class="ticket-item"><span class="ticket-cat">Pédagogique</span><span class="ticket-desc">Support sur les plateformes pédagogiques (Ypareo, ENT) : accès, droits, dysfonctionnements signalés par les enseignants.</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-num">3</span> Interface GLPI — Suivi des tickets</div>
+    <div class="capture-block">
+      <div class="capture-label">📷 Capture — Interface de gestion des tickets GLPI</div>
+      <img src="capture-glpi-tickets.png" alt="Interface tickets GLPI" class="capture-img">
+    </div>
+  </div>
+
+  <footer>Théo Fauvel · BTS SIO SISR · E5 · Session 2024-2026</footer>
+</div>
+</body>
+</html>
